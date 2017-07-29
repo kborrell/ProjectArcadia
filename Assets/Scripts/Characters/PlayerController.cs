@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	private Character controlledCharacter;
+	public Character controlledCharacter { get; private set; }
 
+	public void unpossesCurrentCharacter()
+	{
+		if (controlledCharacter != null) 
+		{
+			controlledCharacter.SetIsPossessed (false);
+		}
+		controlledCharacter.SetIsPossessed (false);
+		controlledCharacter = null;
+	}
+
+	public void possesCharacter(Character character)
+	{
+		CameraController.Instance.SetPlayerTarget(character.transform);
+		character.SetIsPossessed (true);
+
+	}
 	// Use this for initialization
 	void Start () {
 		

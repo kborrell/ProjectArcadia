@@ -10,6 +10,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         UIManager.Instance.Initialize();
         CameraController.Instance.Initialize();
+		TeleportManager.Instance.Initialize ();
 		CharactersManager.Instance.Initialize ();
     }
 }

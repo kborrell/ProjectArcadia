@@ -1,37 +1,19 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeleportManager : MonoBehaviour {
-
-    public GameObject m_startingCharacter;
-
-    private static TeleportManager instance = null;
-    private GameObject m_currentCharacter;
+public class TeleportManager : SingletonMonoBehaviour<TeleportManager> 
+{
     private float m_maxTeleportZone;
     private bool m_changingSoul;
     [SerializeField] private LineRenderer m_soulParticle;
     private float m_soulChangeDuration;
     private float m_soulSpeed;
 
-    public static TeleportManager GetInstance()
+	private Character m_objetiveCharacter;
+
+	public void Initialize()
     {
-        if(instance == null)
-        {
-            instance = new TeleportManager();
-        }
-
-        return instance;
-    }
-
-    void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
-
-        m_currentCharacter = m_startingCharacter;
         m_maxTeleportZone = 10f;
         m_soulSpeed = 10f;
     }
@@ -44,6 +26,11 @@ public class TeleportManager : MonoBehaviour {
             DisplaySoulChange();
 	}
 
+	Character getCurrentCharacter()
+	{
+		return CharactersManager.Instance.getPlayerController ().controlledCharacter;
+	}
+
     void HandleMouseInput()
     {
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -51,21 +38,22 @@ public class TeleportManager : MonoBehaviour {
 
         if(Physics.Raycast(mouseRay, out hit))
         {
-            if(Input.GetMouseButtonDown(0) && hit.transform.tag == "Character" && Vector3.Distance(m_currentCharacter.transform.position, hit.transform.position) <= m_maxTeleportZone)
+			if(Input.GetMouseButtonDown(0) && hit.transform.tag == "Character" && Vector3.Distance(getCurrentCharacter().transform.position, hit.transform.position) <= m_maxTeleportZone)
             {
-				ChangeSoul(hit.transform.gameObject);
+				Character character = hit.transform.gameObject.GetComponent<Character> ();
+				ChangeSoul(character);
             }
         }
     }
 
-    void ChangeSoul(GameObject character)
+	void ChangeSoul(Character character)
     {
-        if(m_currentCharacter != character)
+		if(getCurrentCharacter() != character)
         {
-            m_currentCharacter.GetComponent<MovementController>().enabled = false;
+			CharactersManager.Instance.getPlayerController ().unpossesCurrentCharacter();
             m_soulParticle.gameObject.SetActive(true);
-            m_soulParticle.transform.position = m_currentCharacter.transform.position;                 
-			m_currentCharacter = character;
+			m_soulParticle.transform.position = getCurrentCharacter().transform.position;                 
+			m_objetiveCharacter = character;
             m_changingSoul = true;
 
             Debug.Log("Teleported to " + character.name);
@@ -74,14 +62,15 @@ public class TeleportManager : MonoBehaviour {
 
     void DisplaySoulChange()
     {
-        m_soulParticle.transform.position = Vector3.MoveTowards(m_soulParticle.transform.position, m_currentCharacter.transform.position, Time.deltaTime * m_soulSpeed);
+		m_soulParticle.transform.position = Vector3.MoveTowards(m_soulParticle.transform.position, getCurrentCharacter().transform.position, Time.deltaTime * m_soulSpeed);
 
-        if (Vector3.Distance(m_soulParticle.transform.position, m_currentCharacter.transform.position) <= 0.5f)
+		if (Vector3.Distance(m_soulParticle.transform.position, getCurrentCharacter().transform.position) <= 0.5f)
         {
             m_changingSoul = false;
             m_soulParticle.gameObject.SetActive(false);
-			m_currentCharacter.GetComponent<MovementController>().enabled = true;
-            CameraController.Instance.SetPlayerTarget(m_currentCharacter.transform);
+			CharactersManager.Instance.getPlayerController ().possesCharacter(m_objetiveCharacter);
+			m_objetiveCharacter = null;
+            
 		}
     }
 }
