@@ -11,15 +11,13 @@ public class CharacterIAMovement : MonoBehaviour {
     private float m_timeLeftToRecalculate;
 
     private UnityEngine.AI.NavMeshAgent m_navMeshAgent;
-    void Start()
+    void Awake()
     {
         // init navmeshagent
         m_navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         m_navMeshAgent.speed = 2;
         m_navMeshAgent.angularSpeed = 0;
 		m_navMeshAgent.updateRotation = false;
-
-
 
         // init position
         m_origin = gameObject.transform.position;
@@ -49,6 +47,14 @@ public class CharacterIAMovement : MonoBehaviour {
         delta.x = Random.Range(m_origin.x - m_positionRange, m_origin.x + m_positionRange);
         delta.z = Random.Range(m_origin.z - m_positionRange, m_origin.z + m_positionRange);
         return delta;
+    }
+
+    public void SetEnabled(bool enabled)
+    {
+        this.enabled = enabled;
+        m_navMeshAgent.enabled = enabled;
+
+        gameObject.transform.rotation = Quaternion.Euler(new Vector3(45, 0, 0));
     }
 
     //void OnDrawGizmosSelected()

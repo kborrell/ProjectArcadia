@@ -9,6 +9,11 @@ public class CharacterMovement : MonoBehaviour {
         m_movementEnabled = enabled;
     }
 
+    public void SetEnabled(bool enabled)
+    {
+        this.enabled = enabled;
+    }
+
     private void Start()
     {
         if (m_invertedMovement)

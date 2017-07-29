@@ -18,8 +18,8 @@ public class Character : MonoBehaviour, IPointerClickHandler {
 
     public void SetIsPossessed(bool enable)
     {
-        m_movementComponent.enabled = enable;
-        m_characterIAMovement.enabled = !enable;
+        m_movementComponent.SetEnabled(enable);
+        m_characterIAMovement.SetEnabled(!enable);
         m_isPossessed = enable;
     }
 
@@ -53,7 +53,7 @@ public class Character : MonoBehaviour, IPointerClickHandler {
         m_animator = GetComponent<Animator>();
         m_energyComponent = GetComponent<CharacterEnergy>();
         m_movementComponent = GetComponent<CharacterMovement> ();
-	m_characterVision = GetComponent<CharacterVision> ();
+	    m_characterVision = GetComponent<CharacterVision> ();
         m_sonarComponent = GetComponent<CharacterSonar>();
         m_characterIAMovement = GetComponent<CharacterIAMovement>();
     }
