@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,9 +17,6 @@ public class CharacterSonar : MonoBehaviour {
         m_sonarType = (m_character.GetCharacterType() == Character.CharacterType.Sonar);
         m_chargingTime = (m_sonarType)? 0f : 2f;
 		CharacterEnergy.OnCharacterDead += StopOnDead;
-
-		//Provisional initialization.
-		m_character.SetIsPossessed(true);
 	}
 
     void Update()
