@@ -8,9 +8,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         base.Awake();
 
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         UIManager.Instance.Initialize();
         CameraController.Instance.Initialize();
-		TeleportManager.Instance.Initialize ();
-		CharactersManager.Instance.Initialize ();
+        TeleportManager.Instance.Initialize();
+        CharactersManager.Instance.Initialize();
     }
 }
