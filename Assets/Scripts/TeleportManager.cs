@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using System;
 
-public class TeleportManager : SingletonMonoBehaviour<TeleportManager> , IPointerClickHandler
+public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 {
     private float m_maxTeleportZone;
     private bool m_changingSoul;
@@ -19,6 +19,20 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager> , IPointe
         m_maxTeleportZone = 10f;
         m_soulSpeed = 10f;
     }
+
+	public void ChangeSoul(Character character)
+	{
+		if (getCurrentCharacter() != character)
+		{
+			m_soulParticle.transform.position = getCurrentCharacter().transform.position;
+			m_objetiveCharacter = character;
+			m_changingSoul = true;
+
+
+
+			Debug.Log("Teleported to " + character.name);
+		}
+	}
 
 	void Update () 
     {
@@ -48,20 +62,6 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager> , IPointe
         }
     }
 
-	void ChangeSoul(Character character)
-    {
-		if(getCurrentCharacter() != character)
-        {
-            m_soulParticle.transform.position = getCurrentCharacter().transform.position;
-            m_objetiveCharacter = character;
-            m_changingSoul = true;
-
-
-
-            Debug.Log("Teleported to " + character.name);
-		}
-    }
-
     void DisplaySoulChange()
     {
         m_soulParticle.transform.position = Vector3.MoveTowards(m_soulParticle.transform.position, getCurrentCharacter().transform.position, Time.deltaTime * m_soulSpeed);
@@ -74,10 +74,5 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager> , IPointe
 			m_objetiveCharacter = null;
             
 		}
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        
     }
 }

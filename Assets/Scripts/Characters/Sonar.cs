@@ -1,12 +1,10 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Sonar : MonoBehaviour {
 
     private Character m_character;
-    private CharacterEnergy m_energy;
-    //private CharacterMovement m_movement;
     private bool m_chargingSonar;
     private bool m_sonarActive;
     private float m_chargingTime;
@@ -15,7 +13,6 @@ public class Sonar : MonoBehaviour {
     void Start()
     {
         m_character = GetComponent<Character>();
-        m_energy = GetComponent<CharacterEnergy>();
 
         m_sonarType = (m_character.GetCharacterType() == Character.CharacterType.Sonar);
         m_chargingTime = (m_sonarType)? 0f : 2f;
@@ -54,8 +51,8 @@ public class Sonar : MonoBehaviour {
     {
         Debug.Log("Charging Sonar");
         m_chargingSonar = true;
-        if(!m_sonarType)
-            //m_movement.StopsMovement();
+        if (!m_sonarType)
+            m_character.SetCharacterMovementEnabled(false);
 		yield return new WaitForSeconds(m_chargingTime);
         Debug.Log("Sonar charged");
         m_sonarActive = true;
@@ -66,8 +63,8 @@ public class Sonar : MonoBehaviour {
     void StopSonar()
     {
         Debug.Log("Sonar stopped");
-        if(!m_sonarType)
-            //m_movement.ResumeMovement();
+        if (!m_sonarType)
+            m_character.SetCharacterMovementEnabled(true);
 		m_chargingSonar = false;
 		m_sonarActive = false;
         //Stop the sonar UI.
