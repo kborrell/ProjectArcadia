@@ -109,7 +109,7 @@ MonoBehaviour:
   cameraSpeed: 0.15
   cameraAngle: 45
   elevationY: 20
-  zoom: 15
+  zoom: 4
 --- !u!124 &124184285192524578
 Behaviour:
   m_ObjectHideFlags: 1
