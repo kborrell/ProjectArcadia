@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
+using System;
 
-public class TeleportManager : SingletonMonoBehaviour<TeleportManager> 
+public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 {
     private float m_maxTeleportZone;
     private bool m_changingSoul;
@@ -18,12 +20,26 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
         m_soulSpeed = 10f;
     }
 
+	public void ChangeSoul(Character character)
+	{
+		if (getCurrentCharacter() != character)
+		{
+			m_soulParticle.transform.position = getCurrentCharacter().transform.position;
+			m_objetiveCharacter = character;
+			m_changingSoul = true;
+
+
+
+			Debug.Log("Teleported to " + character.name);
+		}
+	}
+
 	void Update () 
     {
-        if (!m_changingSoul)
-            HandleMouseInput();
-        else
+        if (m_changingSoul)
             DisplaySoulChange();
+        else
+            HandleMouseInput();
 	}
 
 	Character getCurrentCharacter()
@@ -44,20 +60,6 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 				ChangeSoul(character);
             }
         }
-    }
-
-	void ChangeSoul(Character character)
-    {
-		if(getCurrentCharacter() != character)
-        {
-            m_soulParticle.transform.position = getCurrentCharacter().transform.position;
-            m_objetiveCharacter = character;
-            m_changingSoul = true;
-
-
-
-            Debug.Log("Teleported to " + character.name);
-		}
     }
 
     void DisplaySoulChange()

@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
+using System;
 
-public class Character : MonoBehaviour {
+public class Character : MonoBehaviour, IPointerClickHandler {
 
     public enum CharacterType
     {
@@ -39,6 +41,11 @@ public class Character : MonoBehaviour {
     {
         m_movementComponent.SetMovementEnabled(enabled);
     }
+
+	public void OnPointerClick(PointerEventData eventData)
+	{
+		TeleportManager.Instance.ChangeSoul(this);
+	}
 
 	void Awake ()
     {

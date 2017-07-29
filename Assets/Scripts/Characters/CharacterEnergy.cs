@@ -24,7 +24,6 @@ public class CharacterEnergy : MonoBehaviour {
 		if (OnCharacterDead != null) {
 			OnCharacterDead ();
 		}
-
     }
 
     private void DecreaseEnergy()
