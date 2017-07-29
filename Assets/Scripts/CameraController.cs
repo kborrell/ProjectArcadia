@@ -39,6 +39,7 @@ public class CameraController : SingletonMonoBehaviour<CameraController>
 		{
 			return;
 		}
+
         cameraCenter = new Vector2(playerToFollow.position.x, playerToFollow.position.z);
         
         cameraPosition = new Vector3((cameraCenter.x),

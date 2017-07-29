@@ -6,7 +6,7 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 {
     private float m_maxTeleportZone;
     private bool m_changingSoul;
-    [SerializeField] private LineRenderer m_soulParticle;
+    [SerializeField] private GameObject m_soulParticle;
     private float m_soulChangeDuration;
     private float m_soulSpeed;
 
@@ -50,11 +50,11 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
     {
 		if(getCurrentCharacter() != character)
         {
-			CharactersManager.Instance.getPlayerController ().unpossesCurrentCharacter();
-            m_soulParticle.gameObject.SetActive(true);
-			m_soulParticle.transform.position = getCurrentCharacter().transform.position;                 
-			m_objetiveCharacter = character;
+            m_soulParticle.transform.position = getCurrentCharacter().transform.position;
+            m_objetiveCharacter = character;
             m_changingSoul = true;
+
+
 
             Debug.Log("Teleported to " + character.name);
 		}
@@ -62,13 +62,13 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 
     void DisplaySoulChange()
     {
-		m_soulParticle.transform.position = Vector3.MoveTowards(m_soulParticle.transform.position, getCurrentCharacter().transform.position, Time.deltaTime * m_soulSpeed);
+        m_soulParticle.transform.position = Vector3.MoveTowards(m_soulParticle.transform.position, getCurrentCharacter().transform.position, Time.deltaTime * m_soulSpeed);
 
-		if (Vector3.Distance(m_soulParticle.transform.position, getCurrentCharacter().transform.position) <= 0.5f)
+        if (Vector3.Distance(m_soulParticle.transform.position, getCurrentCharacter().transform.position) <= 0.5f)
         {
             m_changingSoul = false;
-            m_soulParticle.gameObject.SetActive(false);
-			CharactersManager.Instance.getPlayerController ().possesCharacter(m_objetiveCharacter);
+            CharactersManager.Instance.getPlayerController().unpossesCurrentCharacter();
+            CharactersManager.Instance.getPlayerController ().possesCharacter(m_objetiveCharacter);
 			m_objetiveCharacter = null;
             
 		}
