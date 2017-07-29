@@ -10,5 +10,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         UIManager.Instance.Initialize();
         CameraController.Instance.Initialize();
+		CharactersManager.Instance.Initialize ();
     }
 }
