@@ -81,7 +81,7 @@ public class TeleportManager : MonoBehaviour {
             m_changingSoul = false;
             m_soulParticle.gameObject.SetActive(false);
 			m_currentCharacter.GetComponent<MovementController>().enabled = true;
-            Camera.main.GetComponent<CameraController>().;
+            CameraController.Instance.SetPlayerTarget(m_currentCharacter.transform);
 		}
     }
 }
