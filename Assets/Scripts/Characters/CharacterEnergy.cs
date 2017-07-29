@@ -21,13 +21,19 @@ public class CharacterEnergy : MonoBehaviour {
 
     private void KillCharacter()
     {
-        OnCharacterDead?.Invoke();
+        if (OnCharacterDead != null)
+        {
+            OnCharacterDead();   
+        }
     }
 
     private void DecreaseEnergy()
     {
         m_currentEnergy -= m_decreaseRate;
-        OnEnergyValueChanged?.Invoke(m_currentEnergy);
+		if (OnEnergyValueChanged != null)
+		{
+			OnEnergyValueChanged(m_currentEnergy);
+		}
     }
 
     void Awake()

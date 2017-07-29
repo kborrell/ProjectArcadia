@@ -504,8 +504,9 @@ PlayerSettings:
   scriptingBackend: {}
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
-  scriptingRuntimeVersion: 1
-  apiCompatibilityLevelPerPlatform: {}
+  scriptingRuntimeVersion: 0
+  apiCompatibilityLevelPerPlatform:
+    Standalone: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: ProjectArcadia
