@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -62,6 +62,7 @@ public class TeleportManager : MonoBehaviour {
     {
         if(m_currentCharacter != character)
         {
+            m_currentCharacter.GetComponent<MovementController>().enabled = false;
             m_soulParticle.gameObject.SetActive(true);
             m_soulParticle.transform.position = m_currentCharacter.transform.position;                 
 			m_currentCharacter = character;
@@ -79,6 +80,8 @@ public class TeleportManager : MonoBehaviour {
         {
             m_changingSoul = false;
             m_soulParticle.gameObject.SetActive(false);
-        }
+			m_currentCharacter.GetComponent<MovementController>().enabled = true;
+            Camera.main.GetComponent<CameraController>().;
+		}
     }
 }
