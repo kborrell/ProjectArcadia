@@ -6,9 +6,9 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 {
 	private List<Character> mapCharacters = new List<Character>();
 
-	private PlayerController playerController = new PlayerController();
+	public PlayerController playerController;
 
-	private Character targetCharacter = new Character ();
+	private Character targetCharacter;
 
 	public List<GameObject> characterPrefabs = new List<GameObject>();
 
@@ -16,7 +16,8 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 	{
 		Debug.Log ("Characters Manager");
         Character ch = Instantiate(characterPrefabs[0]).GetComponent<Character>() as Character;
-        Character ch0 = Instantiate(characterPrefabs[0]).GetComponent<Character>() as Character;
+        Character ch0 = Instantiate(characterPrefabs[1]).GetComponent<Character>() as Character;
+
         playerController.possesCharacter(ch);
     }
 

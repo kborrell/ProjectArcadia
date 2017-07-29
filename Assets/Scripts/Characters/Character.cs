@@ -40,6 +40,8 @@ public class Character : MonoBehaviour {
         m_animator = GetComponent<Animator>();
         m_energyComponent = GetComponent<CharacterEnergy>();
 		m_movementController = GetComponent<MovementController> ();
+		m_characterVision = GetComponent<CharacterVision> ();
+
     }
 
     void Update ()
@@ -51,6 +53,7 @@ public class Character : MonoBehaviour {
 
     private CharacterEnergy m_energyComponent;
 	private MovementController m_movementController;
+	public CharacterVision m_characterVision { get; private set; }
 
     private Animator m_animator;
     private bool m_isPossessed = false;

@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour {
 
 	public Character controlledCharacter { get; private set; }
 
+	public Light characterLight;
+
 	public void unpossesCurrentCharacter()
 	{
 		if (controlledCharacter != null) 
@@ -18,19 +20,17 @@ public class PlayerController : MonoBehaviour {
 
 	public void possesCharacter(Character character)
 	{
-		CameraController.Instance.SetPlayerTarget(character.transform);
+		controlledCharacter = character;
 		character.SetIsPossessed (true);
-        controlledCharacter = character;
+
+		CameraController.Instance.SetPlayerTarget(character.transform);
+
+		characterLight.transform.parent = character.transform;
+		characterLight.range = controlledCharacter.m_characterVision.GetVisionRange ();
+
+
 
 
     }
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

@@ -53,10 +53,6 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
             m_soulParticle.transform.position = getCurrentCharacter().transform.position;
             m_objetiveCharacter = character;
             m_changingSoul = true;
-
-
-
-            Debug.Log("Teleported to " + character.name);
 		}
     }
 
