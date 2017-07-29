@@ -9,6 +9,14 @@ public class CharacterMovement : MonoBehaviour {
         m_movementEnabled = enabled;
     }
 
+    private void Start()
+    {
+        if (m_invertedMovement)
+        {
+            m_speed = -m_speed;
+        }
+    }
+
     void Update()
     {
         if (m_movementEnabled)
@@ -19,12 +27,12 @@ public class CharacterMovement : MonoBehaviour {
             if (moveHorizontal != 0 || moveVertical != 0)
             {
                 Vector3 move = new Vector3(moveHorizontal, 0, moveVertical);
-                transform.position += move * _speed * Time.deltaTime;
+                transform.position += move * m_speed * Time.deltaTime;
             }
         }
     }
 
-    [SerializeField] private float _speed = 1.0f;
-
+    [SerializeField] private float m_speed = 1.0f;
+    [SerializeField] private bool m_invertedMovement = false;
     private bool m_movementEnabled = true;
 }
