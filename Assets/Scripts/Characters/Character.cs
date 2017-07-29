@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
-    public static Character GetActiveCharacter()
+    public enum CharacterType
     {
-        return s_activeCharacter;
+        Normal,
+        Runner,
+        Explorer,
+        Sonar,
+        Drunk,
+        Target
     }
 
     public void SetIsPossessed(bool enable)
@@ -14,76 +19,36 @@ public class Character : MonoBehaviour {
         m_isPossessed = enable;
     }
 
-    public float GetCurrentEnergy()
+    public bool IsPossessed()
     {
-        return m_currentEnergy;
+        return m_isPossessed;
     }
 
-    public bool isDead()
+    public void SetCharacterType(CharacterType type)
     {
-        return m_currentEnergy <= 0;
+        m_characterType = type;
     }
 
-    private void KillCharacter()
+    public CharacterType GetCharacterType()
     {
-        if (OnCharacterDead != null)
-        {
-            OnCharacterDead(this);
-        }
-    }
-
-    private void DecreaseEnergy()
-    {
-        m_currentEnergy -= m_decreaseRate;
-
-        Debug.Log("CURRENT ENERGY: " + m_currentEnergy);
-
-        if (OnEnergyValueChanged != null)
-        {
-            OnEnergyValueChanged(m_currentEnergy);
-        }
+        return m_characterType;
     }
 
 	void Awake ()
     {
         m_animator = GetComponent<Animator>();
-        if (m_startActive)
-        {
-            s_activeCharacter = this;
-        }
-	}
-
-    private void Start()
-    {
-        m_currentEnergy = m_initialEnergy;
+        m_energyComponent = GetComponent<CharacterEnergy>();
     }
 
     void Update ()
     {
-		if (m_timeSinceLastUpdate > 1.0f)
-        {
-            DecreaseEnergy();
-            m_timeSinceLastUpdate = 0.0f;
-        }
 
-        m_timeSinceLastUpdate += Time.deltaTime;
 	}
-    
-    [SerializeField] private float m_initialEnergy = 100.0f;
-    [SerializeField] private float m_decreaseRate = 1.0f;
-    private float m_currentEnergy;
-    private float m_timeSinceLastUpdate = 0.0f;
+
+    [SerializeField] CharacterType m_characterType;
+
+    private CharacterEnergy m_energyComponent;
 
     private Animator m_animator;
-
-    [SerializeField] private bool m_startActive = false;
-    private bool m_isPossessed;
-
-    private static Character s_activeCharacter;
-
-    public delegate void OnCharacterDeadEvent(Character character);
-    public static event OnCharacterDeadEvent OnCharacterDead;
-
-    public delegate void OnEnergyValueChangedEvent(float newValue);
-    public static event OnEnergyValueChangedEvent OnEnergyValueChanged;
+    private bool m_isPossessed = false;
 }
