@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1168954306209752}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 13.8, z: -19}
+  m_LocalPosition: {x: 0, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,14 +61,14 @@ Camera:
     width: 1
     height: 1
   near clip plane: -10
-  far clip plane: 100
+  far clip plane: 12
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967241
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -76,7 +76,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
@@ -93,7 +93,7 @@ Behaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1168954306209752}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &114151829925415702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,14 +106,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerToFollow: {fileID: 0}
-  cameraSpeed: 0.15
+  cameraSpeed: 0.05
   cameraAngle: 45
-  elevationY: 20
-  zoom: 15
+  elevationY: 2.5
+  zoom: 4
 --- !u!124 &124184285192524578
 Behaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1168954306209752}
-  m_Enabled: 1
+  m_Enabled: 0
