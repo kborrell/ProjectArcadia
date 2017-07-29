@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sonar : MonoBehaviour {
+public class CharacterSonar : MonoBehaviour {
 
     private Character m_character;
     private bool m_chargingSonar;
