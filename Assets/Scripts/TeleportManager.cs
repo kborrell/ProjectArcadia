@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
+using System;
 
-public class TeleportManager : SingletonMonoBehaviour<TeleportManager> 
+public class TeleportManager : SingletonMonoBehaviour<TeleportManager> , IPointerClickHandler
 {
     private float m_maxTeleportZone;
     private bool m_changingSoul;
@@ -20,10 +22,10 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 
 	void Update () 
     {
-        if (!m_changingSoul)
-            HandleMouseInput();
-        else
+        if (m_changingSoul)
             DisplaySoulChange();
+        else
+            HandleMouseInput();
 	}
 
 	Character getCurrentCharacter()
@@ -72,5 +74,10 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 			m_objetiveCharacter = null;
             
 		}
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        
     }
 }
