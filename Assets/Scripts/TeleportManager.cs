@@ -33,7 +33,7 @@ public class TeleportManager : MonoBehaviour {
 
         m_currentCharacter = m_startingCharacter;
         m_maxTeleportZone = 10f;
-        m_soulSpeed = 5f;
+        m_soulSpeed = 10f;
     }
 
 	void Update () 
@@ -74,7 +74,6 @@ public class TeleportManager : MonoBehaviour {
     void DisplaySoulChange()
     {
         m_soulParticle.transform.position = Vector3.MoveTowards(m_soulParticle.transform.position, m_currentCharacter.transform.position, Time.deltaTime * m_soulSpeed);
-        m_soulParticle.transform.LookAt(m_currentCharacter.transform);
 
         if (Vector3.Distance(m_soulParticle.transform.position, m_currentCharacter.transform.position) <= 0.5f)
         {
