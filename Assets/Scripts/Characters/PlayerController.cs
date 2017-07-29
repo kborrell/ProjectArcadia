@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
 
 		characterLight.transform.parent = character.transform;
 		characterLight.range = controlledCharacter.m_characterVision.GetVisionRange ();
+        characterLight.transform.localPosition = new Vector3(-0.1f, 3.25f, -3.8f);
     }
 
 }
