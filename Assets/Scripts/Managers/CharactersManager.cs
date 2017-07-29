@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharactersManager : SingletonMonoBehaviour<UIManager>
+public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 {
 	private List<Character> mapCharacters = new List<Character>();
 
@@ -10,10 +10,23 @@ public class CharactersManager : SingletonMonoBehaviour<UIManager>
 
 	private Character targetCharacter = new Character ();
 
-	public List<Object> characterPrefabs = new List<Object>();
+	public List<GameObject> characterPrefabs = new List<GameObject>();
 
 	public void Initialize()
 	{
+		Debug.Log ("Characters Manager");
+        Character ch = Instantiate(characterPrefabs[0]).GetComponent<Character>() as Character;
+        Character ch0 = Instantiate(characterPrefabs[0]).GetComponent<Character>() as Character;
+        playerController.possesCharacter(ch);
+    }
 
+	public PlayerController getPlayerController()
+	{
+		return playerController;
+	}
+
+	public Character getTargetCharacter()
+	{
+		return targetCharacter;
 	}
 }

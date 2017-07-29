@@ -21,18 +21,30 @@ public class CharacterEnergy : MonoBehaviour {
 
     private void KillCharacter()
     {
+<<<<<<< HEAD
         if (OnCharacterDead != null)
         {
             OnCharacterDead();   
         }
+=======
+		if (OnCharacterDead != null) {
+			OnCharacterDead ();
+		}
+
+>>>>>>> master
     }
 
     private void DecreaseEnergy()
     {
         m_currentEnergy -= m_decreaseRate;
+<<<<<<< HEAD
 		if (OnEnergyValueChanged != null)
 		{
 			OnEnergyValueChanged(m_currentEnergy);
+=======
+		if (OnEnergyValueChanged != null) {
+			OnEnergyValueChanged (m_currentEnergy);
+>>>>>>> master
 		}
     }
 
