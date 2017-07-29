@@ -20,8 +20,10 @@ public class PlayerController : MonoBehaviour {
 	{
 		CameraController.Instance.SetPlayerTarget(character.transform);
 		character.SetIsPossessed (true);
+        controlledCharacter = character;
 
-	}
+
+    }
 	// Use this for initialization
 	void Start () {
 		

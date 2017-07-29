@@ -16,7 +16,7 @@ public class Character : MonoBehaviour {
 
     public void SetIsPossessed(bool enable)
     {
-		m_movementController.enabled = !enable;
+		m_movementController.enabled = enable;
         m_isPossessed = enable;
     }
 
