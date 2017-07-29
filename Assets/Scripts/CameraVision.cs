@@ -9,10 +9,15 @@ public class CameraVision : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_visibleArea = this.GetComponent<RectTransform> ();
+
+		//remove update code
+		Debug.LogError ("DEBUG CODE - CAMERA VISION REMOVE BEFORE SUBMIT");
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+
 		if (Input.GetKeyDown (KeyCode.KeypadPlus)) 
 		{
 			setSize (m_visibleArea.sizeDelta.x + 1);
