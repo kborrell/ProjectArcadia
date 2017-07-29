@@ -10,24 +10,30 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
     private bool m_changingSoul;
     [SerializeField] private GameObject m_soulParticle;
     private float m_soulChangeDuration;
-    private float m_soulSpeed;
+    [SerializeField] private float m_soulSpeed;
 
+    private Character m_previousCharacter;
 	private Character m_objetiveCharacter;
+    private GameObject m_particles;
 
 	public void Initialize()
     {
         m_maxTeleportZone = 10f;
-        m_soulSpeed = 10f;
     }
 
 	public void ChangeSoul(Character character)
 	{
 		if (getCurrentCharacter() != character)
 		{
-			m_soulParticle.transform.position = getCurrentCharacter().transform.position;
+			m_particles = GameObject.Instantiate(m_soulParticle, getCurrentCharacter().transform.position, Quaternion.Euler(new Vector3(0.0f, 180.0f, 0.0f)));
 			m_objetiveCharacter = character;
-			m_changingSoul = true;
+            m_previousCharacter = getCurrentCharacter();
+            m_changingSoul = true;
 
+            m_previousCharacter.SetCharacterMovementEnabled(false);
+            CharactersManager.Instance.getPlayerController().getCharacterLight().transform.parent = m_particles.transform;
+            CameraController.Instance.SetPlayerTarget(m_particles.transform);
+            CharactersManager.Instance.getPlayerController().unpossesCurrentCharacter();
             DisplaySoulChange();
 
 			Debug.Log("Teleported to " + character.name);
@@ -64,15 +70,18 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 
     void DisplaySoulChange()
     {
-        m_soulParticle.transform.position = Vector3.MoveTowards(m_soulParticle.transform.position, getCurrentCharacter().transform.position, Time.deltaTime * m_soulSpeed);
+        m_particles.transform.position = Vector3.MoveTowards(m_particles.transform.position, m_objetiveCharacter.transform.position, Time.deltaTime * m_soulSpeed);
 
-        if (Vector3.Distance(m_soulParticle.transform.position, getCurrentCharacter().transform.position) <= 0.5f)
+        if (Vector3.Distance(m_particles.transform.position, m_objetiveCharacter.transform.position) <= 0.5f)
         {
             m_changingSoul = false;
-            CharactersManager.Instance.getPlayerController().unpossesCurrentCharacter();
+            m_previousCharacter.SetCharacterMovementEnabled(true);
             CharactersManager.Instance.getPlayerController ().possesCharacter(m_objetiveCharacter);
 			m_objetiveCharacter = null;
-            
+            m_previousCharacter = null;
+
+            DestroyImmediate(m_particles.gameObject);
+            m_particles = null;
 		}
     }
 }

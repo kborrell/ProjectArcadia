@@ -13,13 +13,14 @@ public class Character : MonoBehaviour, IPointerClickHandler {
         Explorer,
         Sonar,
         Drunk,
-        Target
+        Target,
+        Soul
     }
 
     public void SetIsPossessed(bool enable)
     {
         m_movementComponent.SetEnabled(enable);
-        m_characterIAMovement.SetEnabled(!enable);
+        if (m_characterIAMovement) m_characterIAMovement.SetEnabled(!enable);
         m_isPossessed = enable;
     }
 
