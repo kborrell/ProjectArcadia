@@ -16,7 +16,7 @@ public class Character : MonoBehaviour {
 
     public void SetIsPossessed(bool enable)
     {
-		m_movementController.enabled = enable;
+        m_movementComponent.enabled = enable;
         m_isPossessed = enable;
     }
 
@@ -35,11 +35,16 @@ public class Character : MonoBehaviour {
         return m_characterType;
     }
 
+    public void SetCharacterMovementEnabled(bool enabled)
+    {
+        m_movementComponent.SetMovementEnabled(enabled);
+    }
+
 	void Awake ()
     {
         m_animator = GetComponent<Animator>();
         m_energyComponent = GetComponent<CharacterEnergy>();
-		m_movementController = GetComponent<MovementController> ();
+        m_movementComponent = GetComponent<CharacterMovement> ();
     }
 
     void Update ()
@@ -50,7 +55,7 @@ public class Character : MonoBehaviour {
     [SerializeField] CharacterType m_characterType;
 
     private CharacterEnergy m_energyComponent;
-	private MovementController m_movementController;
+	private CharacterMovement m_movementComponent;
 
     private Animator m_animator;
     private bool m_isPossessed = false;

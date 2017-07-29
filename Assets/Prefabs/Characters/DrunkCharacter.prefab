@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23484726754656358}
   - component: {fileID: 114280040831620726}
   - component: {fileID: 114949860500218878}
+  - component: {fileID: 114455571900778942}
   m_Layer: 0
   m_Name: DrunkCharacter
   m_TagString: Untagged
@@ -94,6 +95,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_characterType: 0
+--- !u!114 &114455571900778942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1022784493689008}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e1423efba4a12438c0e0d780f22958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
 --- !u!114 &114949860500218878
 MonoBehaviour:
   m_ObjectHideFlags: 1
