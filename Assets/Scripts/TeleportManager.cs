@@ -28,7 +28,7 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 			m_objetiveCharacter = character;
 			m_changingSoul = true;
 
-
+            DisplaySoulChange();
 
 			Debug.Log("Teleported to " + character.name);
 		}

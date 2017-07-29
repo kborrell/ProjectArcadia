@@ -28,9 +28,10 @@ GameObject:
   - component: {fileID: 114523682250509680}
   - component: {fileID: 195477375677735324}
   - component: {fileID: 114849665325805100}
+  - component: {fileID: 136054368450789942}
   m_Layer: 0
   m_Name: DrunkCharacter
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +163,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_initialEnergy: 8
   m_decreaseRate: 1
+--- !u!136 &136054368450789942
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1022784493689008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195477375677735324
 NavMeshAgent:
   m_ObjectHideFlags: 1

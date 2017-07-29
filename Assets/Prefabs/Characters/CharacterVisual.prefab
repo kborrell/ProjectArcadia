@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4586585521075500}
   - component: {fileID: 33027078868884512}
-  - component: {fileID: 64009493601643920}
   - component: {fileID: 23459377619835516}
+  - component: {fileID: 64868107288394744}
   m_Layer: 0
   m_Name: CharacterVisual
   m_TagString: Untagged
@@ -81,7 +81,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1499897416793574}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64009493601643920
+--- !u!64 &64868107288394744
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
