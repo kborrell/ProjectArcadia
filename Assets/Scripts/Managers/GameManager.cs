@@ -9,5 +9,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         base.Awake();
 
         UIManager.Instance.Initialize();
+        CameraController.Instance.Initialize();
     }
 }

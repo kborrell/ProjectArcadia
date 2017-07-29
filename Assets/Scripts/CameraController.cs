@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : SingletonMonoBehaviour<CameraController>
 {
     [SerializeField]
-    private List<GameObject> players;
+    private Transform playerToFollow;
     
     [SerializeField]
     private float cameraSpeed = 0.10f;
@@ -22,6 +22,11 @@ public class CameraController : MonoBehaviour
     private Vector3 cameraPosition;
     private Camera orthCamera;
 
+    public void Initialize()
+    {
+        orthCamera = GetComponent<Camera>();
+    }
+
     void Start()
     {
         //this.transform.Rotate(new Vector3(cameraAngle, 0, 0));
@@ -30,7 +35,7 @@ public class CameraController : MonoBehaviour
     
     void Update()
     {
-        cameraCenter = new Vector2(players[0].transform.position.x, players[0].transform.position.z);
+        cameraCenter = new Vector2(playerToFollow.position.x, playerToFollow.position.z);
         
         cameraPosition = new Vector3((cameraCenter.x),
                                      elevationY * Mathf.Sin(Mathf.Deg2Rad * (transform.rotation.eulerAngles.x)) + 1.0f, //Deal
@@ -41,5 +46,10 @@ public class CameraController : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, cameraPosition, cameraSpeed);
 
         orthCamera.orthographicSize = zoom;
+    }
+
+    public void SetPlayerTarget(Transform player)
+    {
+        playerToFollow = player;
     }
 }
