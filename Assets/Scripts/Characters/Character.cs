@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
+using System;
 
-public class Character : MonoBehaviour {
+public class Character : MonoBehaviour, IPointerClickHandler {
 
     public enum CharacterType
     {
@@ -16,7 +18,8 @@ public class Character : MonoBehaviour {
 
     public void SetIsPossessed(bool enable)
     {
-		m_movementController.enabled = enable;
+        m_movementComponent.enabled = enable;
+        m_characterIAMovement.enabled = !enable;
         m_isPossessed = enable;
     }
 
@@ -35,13 +38,24 @@ public class Character : MonoBehaviour {
         return m_characterType;
     }
 
+    public void SetCharacterMovementEnabled(bool enabled)
+    {
+        m_movementComponent.SetMovementEnabled(enabled);
+    }
+
+	public void OnPointerClick(PointerEventData eventData)
+	{
+		TeleportManager.Instance.ChangeSoul(this);
+	}
+
 	void Awake ()
     {
         m_animator = GetComponent<Animator>();
         m_energyComponent = GetComponent<CharacterEnergy>();
-		m_movementController = GetComponent<MovementController> ();
-		m_characterVision = GetComponent<CharacterVision> ();
-
+        m_movementComponent = GetComponent<CharacterMovement> ();
+	m_characterVision = GetComponent<CharacterVision> ();
+        m_sonarComponent = GetComponent<CharacterSonar>();
+        m_characterIAMovement = GetComponent<CharacterIAMovement>();
     }
 
     void Update ()
@@ -52,8 +66,10 @@ public class Character : MonoBehaviour {
     [SerializeField] CharacterType m_characterType;
 
     private CharacterEnergy m_energyComponent;
-	private MovementController m_movementController;
+	private CharacterMovement m_movementComponent;
 	public CharacterVision m_characterVision { get; private set; }
+    private CharacterSonar m_sonarComponent;
+    private CharacterIAMovement m_characterIAMovement;
 
     private Animator m_animator;
     private bool m_isPossessed = false;

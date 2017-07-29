@@ -23,6 +23,9 @@ GameObject:
   - component: {fileID: 23012171277384132}
   - component: {fileID: 114939234456380690}
   - component: {fileID: 114279534370772762}
+  - component: {fileID: 114481872284699718}
+  - component: {fileID: 114637064721988030}
+  - component: {fileID: 114546962467275990}
   m_Layer: 0
   m_Name: SonarCharacter
   m_TagString: Untagged
@@ -95,6 +98,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_initialEnergy: 5
   m_decreaseRate: 1
+--- !u!114 &114481872284699718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463455764880852}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e1423efba4a12438c0e0d780f22958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 1
+  m_invertedMovement: 0
+--- !u!114 &114546962467275990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463455764880852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86bdbcfe358d4674fa539d13d8cd4010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_positionRange: 10
+  m_timeToRecalculate: 3
+  m_recalculateOrigin: 0
+--- !u!114 &114637064721988030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1463455764880852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1d658629f6c458fa3f9ea06227f60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114939234456380690
 MonoBehaviour:
   m_ObjectHideFlags: 1
