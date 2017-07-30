@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour {
 			movement.SetEnabled (false);
 		}
         // display animations
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
 
 		CharactersManager.Instance.RemoveCharacter(character);
 		GameObject particles = Instantiate(m_deadParticles, character.transform.position, character.transform.rotation);
