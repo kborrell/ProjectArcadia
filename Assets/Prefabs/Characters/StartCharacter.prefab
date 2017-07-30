@@ -27,7 +27,6 @@ GameObject:
   - component: {fileID: 114872192126162806}
   - component: {fileID: 114335967825129142}
   - component: {fileID: 195854064637058134}
-  - component: {fileID: 114776446011687208}
   - component: {fileID: 136161136979553234}
   - component: {fileID: 54614169101879916}
   m_Layer: 0
@@ -137,10 +136,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1010771572845708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab89dfe39890488d818c9e90f37f340, type: 3}
+  m_Script: {fileID: 11500000, guid: 0eacf6df4cfdad34283e0d8b88e90f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 9.6
+  m_visionRange: 9.6
 --- !u!114 &114484986652137574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,18 +153,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 5
   m_invertedMovement: 0
---- !u!114 &114776446011687208
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1010771572845708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab89dfe39890488d818c9e90f37f340, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visionRange: 9.6
 --- !u!114 &114872192126162806
 MonoBehaviour:
   m_ObjectHideFlags: 1
