@@ -63,6 +63,7 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 					int type = Random.Range (0, characterPrefabs.Count);
 					Character ch = Instantiate(characterPrefabs[type]).GetComponent<Character>() as Character;
 					ch.transform.position = spawnPoints [m_lastSpawnUsed].transform.position;
+					ch.m_characterIAMovement.SetOrigin(ch.transform.position);
 					m_lastSpawnUsed++;
 					m_lastSpawnUsed %= spawnPoints.Count;
 					mapCharacters.Add (ch);
