@@ -15,7 +15,7 @@ public class CharacterIAMovement : MonoBehaviour {
     {
         // init navmeshagent
         m_navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        m_navMeshAgent.speed = 2;
+        m_navMeshAgent.speed = gameObject.GetComponent<CharacterMovement>().GetSpeed();
         m_navMeshAgent.angularSpeed = 0;
 		m_navMeshAgent.updateRotation = false;
 
