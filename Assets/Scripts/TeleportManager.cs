@@ -71,8 +71,23 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 			if(Input.GetMouseButtonDown(0) && hit.transform.tag == "Character" && Vector3.Distance(getCurrentCharacter().transform.position, hit.transform.position) <= m_maxTeleportZone)
             {
 				Character character = hit.transform.gameObject.GetComponent<Character> ();
-				ChangeSoul(character);
-            }
+				CharacterIAMovement chAIMov = character.m_characterIAMovement;
+				if (chAIMov)
+				{
+					if (!chAIMov.IsAngry())
+					{
+						if (CheckIfHeSawIt(character))
+						{
+							if (chAIMov)
+								chAIMov.SetAngry();
+						}
+						else
+							ChangeSoul(character);
+					}
+				}
+				else
+					ChangeSoul(character);
+			}
         }
     }
 
@@ -95,4 +110,12 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 			m_particles = null;
 		}
     }
+
+	private bool CheckIfHeSawIt(Character ch)
+	{
+		CharacterSight chSight = ch.GetComponent<CharacterSight>();
+		if (chSight)
+			return chSight.m_hasSightOfPlayer;
+		return false;
+	}
 }

@@ -10,6 +10,8 @@ public class CharacterIAMovement : MonoBehaviour {
 	public bool m_avoidPlayer;
 	public float m_avoidFrequence;
 
+	private bool m_angry = false;
+
     private Vector3 m_origin, m_facingDirection;
     private float m_timeLeftToRecalculate;
 
@@ -61,7 +63,11 @@ public class CharacterIAMovement : MonoBehaviour {
 		Character playerCharacter = CharactersManager.Instance.getPlayerController ().controlledCharacter;
 
         Vector3 delta = new Vector3();
-		if (m_avoidPlayer && playerCharacter!= null && Random.Range (0.0f, 1.0f) < m_avoidFrequence && 
+		if (m_angry)
+		{
+			delta = playerCharacter.transform.position;
+		}
+		else if (m_avoidPlayer && playerCharacter!= null && Random.Range (0.0f, 1.0f) < m_avoidFrequence && 
             Vector3.Distance(transform.position, playerCharacter.transform.position) < m_escapeRangeMax &&
             Vector3.Distance(transform.position, playerCharacter.transform.position) > m_escapeRangeMin) 
 		{
@@ -131,15 +137,32 @@ public class CharacterIAMovement : MonoBehaviour {
     }
 
 
+	public void SetOrigin(Vector3 newOrigin)
+	{
+		m_origin = newOrigin;
+	}
+
 	public void SetScared()
 	{
+		Debug.Log("I GOT SCARED");
 		m_avoidPlayer = true;
 		m_avoidFrequence = 1;
 		m_timeLeftToRecalculate = 0;
 	}
 
-	public void SetOrigin(Vector3 newOrigin)
+	public void SetAngry()
 	{
-		m_origin = newOrigin;
+		Debug.Log("I GOT ANGRY");
+		m_angry = true;
+		m_timeToRecalculate = 0.1f;
+		m_timeToRecalculate = 0;
+		foreach (Renderer rend in GetComponentsInChildren<Renderer>())
+		{
+			rend.material.color = Color.red;
+		}
+	}
+	public bool IsAngry()
+	{
+		return m_angry;
 	}
 }
