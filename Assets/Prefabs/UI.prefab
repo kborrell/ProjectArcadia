@@ -560,6 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9d77d1c3180f448a469bb8df63d186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonarController: {fileID: 0}
   m_titleText: {fileID: 114004985923299844}
   m_startButton: {fileID: 114059053512279846}
 --- !u!114 &114516636294844882
@@ -613,7 +614,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1689554832165432}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8353497e79739d4f85d0750e0f5bda4, type: 3}
   m_Name: 
@@ -631,6 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c44084557b4dd94ab93d4db71081d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonarController: {fileID: 0}
   m_texts:
   - {fileID: 114089193652295258}
   - {fileID: 114375456159607102}
@@ -694,6 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae39d1888839f6e498ad935f427e0be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonarController: {fileID: 114575112397579852}
 --- !u!222 &222043070969481978
 CanvasRenderer:
   m_ObjectHideFlags: 1

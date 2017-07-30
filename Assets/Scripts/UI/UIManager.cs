@@ -54,6 +54,12 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         }
     }
 
+    public UIPanel GetPanel(UIPanelType panelType)
+    {
+        UIPanel panel = m_panels[panelType];
+        return panel;
+    }
+
     public void HidePanel(UIPanel panel, UIPanel.OnHideAnimationFinishedCallback callback)
     {
         panel.HidePanel(callback);
