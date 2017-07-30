@@ -52,7 +52,7 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 
 		Character controlledCharacter = playerController.controlledCharacter;
 
-		if (controlledCharacter != null) 
+		if (controlledCharacter != null && GameManager.Instance.GameStarted) 
 		{
 			if (deltaSpawn > spawnFrequence) 
 			{
