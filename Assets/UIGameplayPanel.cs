@@ -33,15 +33,7 @@ public class UIGameplayPanel : UIPanel
     private void UpdateProgressBar(float currentValue, float maxValue)
     {
         float percentage = (currentValue / maxValue);
-        if (percentage > m_progressBar.fillAmount)
-        {
-            m_progressBar.DOKill();
-            m_progressBar.fillAmount = percentage;
-        }
-        else
-        {
-            m_progressBar.DOFillAmount(percentage, 1.0f).SetEase(Ease.Linear);
-        }
+        m_progressBar.fillAmount = percentage;
     }
 
     [SerializeField]

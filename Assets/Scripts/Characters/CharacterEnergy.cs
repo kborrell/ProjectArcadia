@@ -28,7 +28,7 @@ public class CharacterEnergy : MonoBehaviour {
 
     private void DecreaseEnergy()
     {
-        m_currentEnergy -= m_decreaseRate;
+        m_currentEnergy -= m_decreaseRate / 100;
 
         if (m_currentEnergy <= 0)
         {
@@ -48,13 +48,13 @@ public class CharacterEnergy : MonoBehaviour {
 
     void Update()
     {
-        if (m_character.IsPossessed() && m_timeSinceLastUpdate > 1.0f)
+        if (m_character.IsPossessed() && m_timeSinceLastUpdate > 0.01f)
         {
             DecreaseEnergy();
             m_timeSinceLastUpdate = 0.0f;
         }
 
-        if (OnEnergyValueChanged != null)
+        if (m_character.IsPossessed() && OnEnergyValueChanged != null)
         {
             OnEnergyValueChanged(m_currentEnergy, m_initialEnergy);
         }
