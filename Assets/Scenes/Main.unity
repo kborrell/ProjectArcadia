@@ -542,11 +542,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114931350439100314, guid: ef6b1ceac0fe11b409db54673981af0d,
         type: 2}
-      propertyPath: m_soulSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114931350439100314, guid: ef6b1ceac0fe11b409db54673981af0d,
-        type: 2}
       propertyPath: m_soulParticle
       value: 
       objectReference: {fileID: 731328367}
