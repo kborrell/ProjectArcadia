@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_positionRange: 10
   m_timeToRecalculate: 3
+  m_escapeRange: 30
   m_recalculateOrigin: 0
   m_avoidPlayer: 1
   m_avoidFrequence: 0.75

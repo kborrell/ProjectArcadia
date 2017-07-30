@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterIAMovement : MonoBehaviour {
 
-    public float m_positionRange, m_timeToRecalculate;
+    public float m_positionRange, m_timeToRecalculate, m_escapeRange;
     public bool m_recalculateOrigin;
 
 	public bool m_avoidPlayer;
@@ -43,7 +43,8 @@ public class CharacterIAMovement : MonoBehaviour {
 		Character playerCharacter = CharactersManager.Instance.getPlayerController ().controlledCharacter;
 
         Vector3 delta = new Vector3();
-		if (m_avoidPlayer && playerCharacter!= null && Random.Range (0.0f, 1.0f) < m_avoidFrequence) 
+		if (m_avoidPlayer && playerCharacter!= null && Random.Range (0.0f, 1.0f) < m_avoidFrequence && 
+            Vector3.Distance(transform.position, playerCharacter.transform.position) < m_escapeRange) 
 		{
 			delta.x = transform.position.x - playerCharacter.transform.position.x ;
 			delta.z = transform.position.z - playerCharacter.transform.position.z ;
@@ -80,15 +81,23 @@ public class CharacterIAMovement : MonoBehaviour {
         return m_facingDirection;
     }
 
-    void OnDrawGizmosSelected() { 
-    //{
-    //    // position range
-    //    Gizmos.color = new Color(0, 0, 1, 0.2f);
-    //    Gizmos.DrawSphere(m_origin, m_positionRange);
+    void OnDrawGizmosSelected() {
+        //{
+        //    // position range
+        //    Gizmos.color = new Color(0, 0, 1, 0.2f);
+        //    Gizmos.DrawSphere(m_origin, m_positionRange);
 
-    //    // target position
-    //    Gizmos.color = new Color(0, 0, 1);
-    //    Gizmos.DrawSphere(m_navMeshAgent.destination, 0.2f);
+        // position range
+        if(m_avoidPlayer)
+        {
+            Gizmos.color = new Color(1, 0, 0, 0.2f);
+            Gizmos.DrawSphere(transform.position, m_escapeRange);
+        }
+
+
+        //    // target position
+        //    Gizmos.color = new Color(0, 0, 1);
+        //    Gizmos.DrawSphere(m_navMeshAgent.destination, 0.2f);
 
         //Gizmos.DrawRay(transform.position, m_facingDirection);
     }
