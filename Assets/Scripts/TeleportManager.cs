@@ -14,6 +14,7 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 
     private Character m_previousCharacter;
 	private Character m_objetiveCharacter;
+    private GameObject m_previousParticles;
     private GameObject m_particles;
 
 	public void Initialize()
@@ -25,7 +26,13 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 	{
 		if (getCurrentCharacter() != character)
 		{
-			m_particles = GameObject.Instantiate(m_soulParticle, getCurrentCharacter().transform.position, Quaternion.Euler(new Vector3(0.0f, 180.0f, 0.0f)));
+            m_particles = GameObject.Instantiate(m_soulParticle, getCurrentCharacter().transform.position, Quaternion.Euler(new Vector3(0.0f, 180.0f, 0.0f)));
+
+            Vector2 v1 = new Vector2(getCurrentCharacter().transform.position.x, getCurrentCharacter().transform.position.z);
+            Vector2 v2 = new Vector2(character.transform.position.x, character.transform.position.z);
+            float angle = Vector2.Angle(v1, v2);
+            Debug.Log(angle);
+
 			m_objetiveCharacter = character;
             m_previousCharacter = getCurrentCharacter();
             m_changingSoul = true;
@@ -39,6 +46,11 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 			Debug.Log("Teleported to " + character.name);
 		}
 	}
+
+    public Character GetPreviousCharacter()
+    {
+        return m_previousCharacter;
+    }
 
 	void Update () 
     {
@@ -80,8 +92,16 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 			m_objetiveCharacter = null;
             m_previousCharacter = null;
 
-            DestroyImmediate(m_particles.gameObject);
-            m_particles = null;
+            m_previousParticles = m_particles;
+			DestroyImmediate(m_particles.gameObject);
+			m_particles = null;
 		}
+    }
+
+    IEnumerator DestroyParticle()
+    {
+        yield return new WaitForSeconds(0.5f);
+        DestroyImmediate(m_previousParticles.gameObject);
+        m_previousParticles = null;
     }
 }
