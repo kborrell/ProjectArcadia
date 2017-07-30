@@ -18,9 +18,16 @@ public class Character : MonoBehaviour {
 
     public void SetIsPossessed(bool enable)
     {
+        if (m_isPossessed && !enable)
+            m_hasBeenPossessed = true;
         m_movementComponent.SetEnabled(enable);
         if (m_characterIAMovement) m_characterIAMovement.SetEnabled(!enable);
         m_isPossessed = enable;
+    }
+
+    public bool HasBeenPossessed()
+    {
+        return m_hasBeenPossessed;
     }
 
     public bool IsPossessed()
@@ -68,4 +75,5 @@ public class Character : MonoBehaviour {
 
     private Animator m_animator;
     private bool m_isPossessed = false;
+    private bool m_hasBeenPossessed = false;
 }
