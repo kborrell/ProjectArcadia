@@ -15,11 +15,11 @@ public class PropScaler : MonoBehaviour
     [Range(0, 20)]
     float scale;
 
+#if UNITY_EDITOR
     private void OnValidate()
     {
-        var position = visualObject.transform.position;
-        visualObject.transform.localPosition = new Vector3(position.x, scale * offset, (scale * offset) - offset);
+        visualObject.transform.localPosition = new Vector3(0, scale * offset, (scale * offset) - offset);
         visualObject.transform.localScale = Vector3.one * scale;
     }
-
+#endif
 }
