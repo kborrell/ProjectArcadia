@@ -29,6 +29,7 @@ public class CharacterSonar : MonoBehaviour {
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
                     Debug.Log("Stop charging");
+                    AudioManager.Instance.StopSFX("Sonar_Charge");
                     StopSonar();
                     m_chargingSonar = false;
                     m_chargedTimer = 0f;
@@ -53,7 +54,9 @@ public class CharacterSonar : MonoBehaviour {
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    m_chargingSonar = true;
+                    if(!m_chargingSonar)
+						AudioManager.Instance.PlaySFX("Sonar_Charge");
+					m_chargingSonar = true;
                     m_chargedTimer = 0f;
                     if (!m_sonarType)
                         m_character.SetCharacterMovementEnabled(false);
@@ -73,6 +76,8 @@ public class CharacterSonar : MonoBehaviour {
         m_sonarActive = true;
         //Call the sonar UI.
         (UIManager.Instance.GetPanel(UIManager.UIPanelType.Gameplay) as UIGameplayPanel).EnableTargetDetection();
+        AudioManager.Instance.StopSFX("Sonar_Charge");
+        AudioManager.Instance.PlaySFX("Sonar");
     }
 
     void StopSonar()
@@ -83,6 +88,7 @@ public class CharacterSonar : MonoBehaviour {
             m_character.SetCharacterMovementEnabled(true);
         //Stop the sonar UI.
         (UIManager.Instance.GetPanel(UIManager.UIPanelType.Gameplay) as UIGameplayPanel).DisableTargetDetection();
+        AudioManager.Instance.StopSFX("Sonar");
     }
 
     void StopOnDead()

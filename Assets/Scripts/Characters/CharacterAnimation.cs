@@ -18,16 +18,22 @@ public class CharacterAnimation : MonoBehaviour
         front,
         back,
         side,
-        idle
+        idle,
+		die
     }
+
+	Character m_character;
 
     State currentState = State.idle;
 
     [SerializeField]
     SkeletonAnimation[] skeletonAnimation;
 
-    [SerializeField]
-    CharacterMovement characterMovement;
+	void Awake()
+	{
+		// init navmeshagent
+		m_character = gameObject.GetComponent<Character>();
+	}
 
     private void Update()
     {
@@ -37,10 +43,18 @@ public class CharacterAnimation : MonoBehaviour
 
     void UpdateAnimation()
     {
-        var dir = characterMovement.GetFacingDirection();
-        var isMoving = characterMovement.IsMoving();
+		var dir = m_character.getMovementDirection ();
+		var isMoving = m_character.isMoving();
 
-        if (isMoving)
+		if (m_character.Dead) 
+		{
+			if (currentState != State.die) 
+			{
+				currentState = State.die;
+				ActivateSkeleton (SkeletonType.die);
+			}
+		}
+        else if (isMoving)
         {
             if (dir == new Vector3(0, 0, 1) && currentState != State.up)
             {
@@ -78,5 +92,6 @@ public class CharacterAnimation : MonoBehaviour
         skeletonAnimation[1].gameObject.SetActive(type == SkeletonType.back);
         skeletonAnimation[2].gameObject.SetActive(type == SkeletonType.side);
         skeletonAnimation[3].gameObject.SetActive(type == SkeletonType.idle);
+		skeletonAnimation[4].gameObject.SetActive(type == SkeletonType.die);
     }
 }
