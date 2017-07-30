@@ -1,0 +1,55 @@
+
+color_4back.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back_cabeza
+  rotate: true
+  xy: 350, 99
+  size: 153, 209
+  orig: 153, 209
+  offset: 0, 0
+  index: -1
+back_piernaderecha
+  rotate: true
+  xy: 350, 2
+  size: 95, 122
+  orig: 95, 122
+  offset: 0, 0
+  index: -1
+back_piernaizq
+  rotate: true
+  xy: 561, 65
+  size: 79, 124
+  orig: 79, 124
+  offset: 0, 0
+  index: -1
+front_bra_dere
+  rotate: true
+  xy: 771, 169
+  size: 83, 172
+  orig: 83, 172
+  offset: 0, 0
+  index: -1
+front_bra_izq
+  rotate: true
+  xy: 561, 146
+  size: 106, 208
+  orig: 106, 208
+  offset: 0, 0
+  index: -1
+front_cabeza
+  rotate: false
+  xy: 2, 26
+  size: 171, 226
+  orig: 171, 226
+  offset: 0, 0
+  index: -1
+front_torso
+  rotate: false
+  xy: 175, 53
+  size: 173, 199
+  orig: 173, 199
+  offset: 0, 0
+  index: -1
