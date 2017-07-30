@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -61,11 +61,32 @@ public class Character : MonoBehaviour {
         m_characterIAMovement = GetComponent<CharacterIAMovement>();
 
 		m_characterVision.enabled = false;
+
+		Dead = false;
     }
 
     void Update ()
     {
 
+	}
+	public bool Dead { get; set; }
+
+	public bool isMoving()
+	{
+		if (IsPossessed ()) {
+			return m_movementComponent.IsMoving ();
+		} else {
+			return m_characterIAMovement.IsMoving ();
+		}
+	}
+
+	public Vector3 getMovementDirection()
+	{
+		if (IsPossessed ()) {
+			return m_movementComponent.GetFacingDirection ();
+		} else {
+			return m_characterIAMovement.GetFacingDirection ();
+		}
 	}
 
     [SerializeField] CharacterType m_characterType;

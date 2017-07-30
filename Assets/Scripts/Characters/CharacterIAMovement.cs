@@ -40,6 +40,9 @@ public class CharacterIAMovement : MonoBehaviour {
 
     public bool IsMoving()
     {
+		if (!enabled) {
+			return false;
+		}
         if (!m_navMeshAgent.pathPending)
         {
             if (m_navMeshAgent.remainingDistance <= m_navMeshAgent.stoppingDistance)
