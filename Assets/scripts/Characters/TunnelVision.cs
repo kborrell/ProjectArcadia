@@ -6,27 +6,29 @@ public class TunnelVision : CharacterVision {
 
     [SerializeField] private float m_tunnelAngle;
 
-	RectTransform rect;
     // Use this for initialization
     public override void Init(Light light)
     {
-		light.type = LightType.Point;
+//		light.type = LightType.Point;
+//
+//		light.type = LightType.Spot;
+//		light.range = GetVisionRange();
+//		light.spotAngle = m_tunnelAngle;
+//		light.transform.localPosition = new Vector3(-0.1f, -2.4f, -2.9f);
+//		light.transform.localEulerAngles = new Vector3(-50, 0, 0);
+        	
+		DefaultVision:Init (light);
 
-		light.type = LightType.Spot;
-		light.range = GetVisionRange();
-		light.spotAngle = m_tunnelAngle;
-		light.transform.localPosition = new Vector3(-0.1f, -2.4f, -2.9f);
-		light.transform.localEulerAngles = new Vector3(-50, 0, 0);
-        		
 		SetTunnelMaskEnabled (true);
     }
 
 	void Update()
 	{
+		
 		Vector3 direction = CharactersManager.Instance.getPlayerController ().controlledCharacter.m_movementComponent.GetFacingDirection ();
 
-		float angle = Vector3.Angle (Vector2.right, direction);
+		float angle = Vector3.Angle (Vector3.up, direction);
 
-		rect.transform.rotation = Quaternion.EulerAngles(new Vector3(0,0,angle));
+		GetRect().transform.rotation = Quaternion.EulerAngles(new Vector3(0,0,angle));
 	}
 }

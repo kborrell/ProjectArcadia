@@ -12,7 +12,12 @@ public abstract class CharacterVision : MonoBehaviour {
 
 	protected void SetTunnelMaskEnabled(bool enabled)
 	{
-		RectTransform rect = UIManager.Instance.m_tunnelMask.GetComponent<RectTransform> ();
+		RectTransform rect = GetRect ();
 		rect.gameObject.SetActive (enabled);
+	}
+
+	protected RectTransform GetRect()
+	{
+		return UIManager.Instance.m_tunnelMask.GetComponent<RectTransform> ();
 	}
 }
