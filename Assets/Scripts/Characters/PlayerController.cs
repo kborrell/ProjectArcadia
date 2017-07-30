@@ -46,8 +46,11 @@ public class PlayerController : MonoBehaviour {
 		CameraController.Instance.SetPlayerTarget(character.transform);
 
 		characterLight.transform.parent = character.transform;
+        /*
 		characterLight.range = controlledCharacter.m_characterVision.GetVisionRange ();
         characterLight.transform.localPosition = new Vector3(-0.1f, 3.25f, -3.8f);
+        */
+        character.GetComponent<CharacterVision>().Init(characterLight);
 
         if (m_characterToDelete != null)
         {
