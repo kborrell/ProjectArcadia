@@ -40,10 +40,16 @@ public class CharacterMovement : MonoBehaviour
                     transform.position = targetPosition;
                 }
                 m_isMoving = true;
+
+                if (!AudioManager.Instance.IsSFXPlaying("Dirt_Step"))
+					AudioManager.Instance.PlaySFX("Dirt_Step");
             }
             else
             {
-                m_isMoving = false;
+                if(m_isMoving && AudioManager.Instance.IsSFXPlaying("Dirt_Step"))
+					AudioManager.Instance.StopSFX("Dirt_Step");
+                
+				m_isMoving = false;
             }
         }
     }

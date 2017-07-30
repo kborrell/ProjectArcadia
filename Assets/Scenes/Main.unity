@@ -737,7 +737,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4850403480716712, guid: 9b2c1f905b750ba4dac5a2f8a46ca257, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 198658006783177120, guid: 9b2c1f905b750ba4dac5a2f8a46ca257,
         type: 2}
@@ -829,6 +829,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8343b57b6dd5acb4190f94afea0de68b, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &874002126
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4440382872996032, guid: 90a302c3ea14a674986a28f9671c2609, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440382872996032, guid: 90a302c3ea14a674986a28f9671c2609, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440382872996032, guid: 90a302c3ea14a674986a28f9671c2609, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440382872996032, guid: 90a302c3ea14a674986a28f9671c2609, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440382872996032, guid: 90a302c3ea14a674986a28f9671c2609, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440382872996032, guid: 90a302c3ea14a674986a28f9671c2609, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440382872996032, guid: 90a302c3ea14a674986a28f9671c2609, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440382872996032, guid: 90a302c3ea14a674986a28f9671c2609, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 90a302c3ea14a674986a28f9671c2609, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1180571805
 Prefab:
   m_ObjectHideFlags: 0
@@ -866,7 +908,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4472450750375720, guid: 65294185bc4f7d34c87799a994fa8726, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65294185bc4f7d34c87799a994fa8726, type: 2}
@@ -1131,7 +1173,7 @@ Prefab:
     - target: {fileID: 224471936818122400, guid: c24e08dee43b9644cb32b49e3e19b17c,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224471936818122400, guid: c24e08dee43b9644cb32b49e3e19b17c,
         type: 2}
@@ -1201,7 +1243,20 @@ Prefab:
     - target: {fileID: 114043389088968716, guid: c24e08dee43b9644cb32b49e3e19b17c,
         type: 2}
       propertyPath: m_debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224934600511516640, guid: c24e08dee43b9644cb32b49e3e19b17c,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346565911594416, guid: c24e08dee43b9644cb32b49e3e19b17c, type: 2}
+      propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934655526484830, guid: c24e08dee43b9644cb32b49e3e19b17c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c24e08dee43b9644cb32b49e3e19b17c, type: 2}
@@ -1283,5 +1338,5 @@ Transform:
   m_LocalScale: {x: 0.7692308, y: 0.7692307, z: 0.7692307}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

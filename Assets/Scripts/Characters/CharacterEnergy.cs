@@ -32,8 +32,10 @@ public class CharacterEnergy : MonoBehaviour {
 
         if (m_currentEnergy <= 0)
         {
+            m_energyOver = true;
             KillCharacter();
-        }
+            AudioManager.Instance.PlaySFX("Death");
+		}
     }
 
     void Awake()
@@ -48,7 +50,7 @@ public class CharacterEnergy : MonoBehaviour {
 
     void Update()
     {
-        if (m_character.IsPossessed() && m_timeSinceLastUpdate > 0.01f)
+        if (m_character.IsPossessed() && m_timeSinceLastUpdate > 0.01f && !m_energyOver)
         {
             DecreaseEnergy();
             m_timeSinceLastUpdate = 0.0f;
@@ -69,6 +71,7 @@ public class CharacterEnergy : MonoBehaviour {
 
     private float m_currentEnergy;
     private float m_timeSinceLastUpdate = 0.0f;
+    private bool m_energyOver = false;
 
     public delegate void OnCharacterDeadEvent();
     public static event OnCharacterDeadEvent OnCharacterDead;
