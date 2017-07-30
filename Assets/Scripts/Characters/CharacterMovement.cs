@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour {
+public class CharacterMovement : MonoBehaviour
+{
+    private Rigidbody _rigidBody;
 
     public void SetMovementEnabled(bool enabled)
     {
@@ -16,6 +18,7 @@ public class CharacterMovement : MonoBehaviour {
 
     private void Start()
     {
+        _rigidBody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -28,10 +31,16 @@ public class CharacterMovement : MonoBehaviour {
             if (moveHorizontal != 0 || moveVertical != 0)
             {
                 m_facingDirection = new Vector3(moveHorizontal, 0, moveVertical) * ((m_invertedMovement) ? -1 : 1);
-				m_facingDirection.Normalize();
+                m_facingDirection.Normalize();
                 transform.position += m_facingDirection * m_speed * Time.deltaTime;
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        _rigidBody.velocity = Vector3.zero;
+        _rigidBody.angularVelocity = Vector3.zero;
     }
 
     public float GetSpeed() { return m_speed; }
@@ -39,8 +48,10 @@ public class CharacterMovement : MonoBehaviour {
     {
         return m_facingDirection;
     }
-    [SerializeField] private float m_speed = 1.0f;
-    [SerializeField] private bool m_invertedMovement = false;
+    [SerializeField]
+    private float m_speed = 1.0f;
+    [SerializeField]
+    private bool m_invertedMovement = false;
     private Vector3 m_facingDirection;
     private bool m_movementEnabled = true;
 
