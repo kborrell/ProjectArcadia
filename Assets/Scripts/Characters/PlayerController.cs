@@ -45,9 +45,14 @@ public class PlayerController : MonoBehaviour {
 
 	public void possesCharacter(Character character)
 	{
+        if (character == CharactersManager.Instance.getTargetCharacter())
+        {
+            GameManager.Instance.EndGame(true);
+        }
+			
         // remove old character
         Character previousCharacter = TeleportManager.Instance.GetPreviousCharacter();
-        if(previousCharacter != null)
+		if(previousCharacter != null && m_characterToDelete ==null)
             StartCoroutine(RemoveCharacter(previousCharacter));
         
 		controlledCharacter = character;
@@ -60,6 +65,7 @@ public class PlayerController : MonoBehaviour {
 
         if (m_characterToDelete != null)
         {
+			GameManager.Instance.GameStarted = true;
             DestroyImmediate(m_characterToDelete.gameObject);
             m_characterToDelete = null;
         }
@@ -68,7 +74,11 @@ public class PlayerController : MonoBehaviour {
     // Display animations and call CharactersManager::RemoveCharacter after certain delay
     private IEnumerator RemoveCharacter(Character character)
     {
-        character.GetComponent<CharacterIAMovement>().SetEnabled(false);
+		CharacterIAMovement movement = character.GetComponent<CharacterIAMovement> ();
+		if (movement) 
+		{
+			movement.SetEnabled (false);
+		}
         // display animations
         yield return new WaitForSeconds(3f);
         // remove old character

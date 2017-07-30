@@ -11,7 +11,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Initialize();
     }
 
-	public bool GameStarted { get; private set; }
+	public bool GameStarted { get; set; }
 
     private void Initialize()
     {
@@ -30,16 +30,19 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         UIManager.Instance.ChangeScreen(UIManager.UIPanelType.Gameplay);
         CharactersManager.Instance.getPlayerController().TurnOnLights();
 
-		GameStarted = true;
-
-        CharacterEnergy.OnCharacterDead += EndGame;
+        CharacterEnergy.OnCharacterDead += OnCharacterDead;
     }
 
-    public void EndGame()
+    public void EndGame(bool win)
     {
         GameStarted = false;
-        CharacterEnergy.OnCharacterDead -= EndGame;
+        CharacterEnergy.OnCharacterDead -= OnCharacterDead;
         CharactersManager.Instance.getPlayerController().TurnOffLights();
-        UIManager.Instance.ChangeScreen(UIManager.UIPanelType.EndMenu);
+        UIManager.Instance.ChangeScreen(win ? UIManager.UIPanelType.WinMenu : UIManager.UIPanelType.EndMenu);
+    }
+
+    public void OnCharacterDead()
+    {
+        EndGame(false);
     }
 }

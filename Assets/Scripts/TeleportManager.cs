@@ -23,7 +23,7 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 
 	public void ChangeSoul(Character character)
 	{
-		if (getCurrentCharacter() != character)
+		if (getCurrentCharacter() != character && !character.HasBeenPossessed())
 		{
             Vector2 v1 = new Vector2(getCurrentCharacter().transform.right.x, getCurrentCharacter().transform.right.z);
             Vector2 v2 = new Vector2(character.transform.position.x, character.transform.position.z) - new Vector2(getCurrentCharacter().transform.position.x, getCurrentCharacter().transform.position.z);
