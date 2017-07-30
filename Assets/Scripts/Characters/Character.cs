@@ -105,7 +105,7 @@ public class Character : MonoBehaviour {
 	public CharacterMovement m_movementComponent { get; private set; }
 	public CharacterVision m_characterVision { get; private set; }
     private CharacterSonar m_sonarComponent;
-    private CharacterIAMovement m_characterIAMovement;
+    public CharacterIAMovement m_characterIAMovement;
 
     private Animator m_animator;
     private bool m_isPossessed = false;

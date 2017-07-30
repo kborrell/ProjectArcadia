@@ -46,11 +46,15 @@ public class CharacterMovement : MonoBehaviour
             }
             else
             {
-                if(m_isMoving && AudioManager.Instance.IsSFXPlaying("Dirt_Step"))
+                if (m_isMoving && AudioManager.Instance.IsSFXPlaying("Dirt_Step"))
 					AudioManager.Instance.StopSFX("Dirt_Step");
                 
 				m_isMoving = false;
             }
+        }
+        else
+        {
+            m_facingDirection = Vector3.zero;
         }
     }
 

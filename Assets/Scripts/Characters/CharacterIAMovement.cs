@@ -70,6 +70,8 @@ public class CharacterIAMovement : MonoBehaviour {
 			delta.Normalize ();
 
 			delta *= m_positionRange;
+
+			delta += transform.position;
 		}
 		else 
 		{
@@ -81,8 +83,8 @@ public class CharacterIAMovement : MonoBehaviour {
 			delta.z = Random.Range(m_origin.z - m_positionRange, m_origin.z + m_positionRange);
 		}
 			
-        m_facingDirection = delta;
-		delta += transform.position;
+        m_facingDirection = delta - transform.position;
+		
         m_facingDirection.Normalize();
 
         return delta;
@@ -127,4 +129,17 @@ public class CharacterIAMovement : MonoBehaviour {
 
         //Gizmos.DrawRay(transform.position, m_facingDirection);
     }
+
+
+	public void SetScared()
+	{
+		m_avoidPlayer = true;
+		m_avoidFrequence = 1;
+		m_timeLeftToRecalculate = 0;
+	}
+
+	public void SetOrigin(Vector3 newOrigin)
+	{
+		m_origin = newOrigin;
+	}
 }

@@ -36,7 +36,8 @@ public class CharacterEnergy : MonoBehaviour {
             m_energyOver = true;
             KillCharacter();
             AudioManager.Instance.PlaySFX("Death");
-		}
+            m_character.SetCharacterMovementEnabled(false);
+        }
     }
 
     void Awake()
