@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class UIPanel : MonoBehaviour {
 
-    [SerializeField]
-    private SonarController sonarController;
-
     public virtual void ShowPanel(OnShowAnimationFinishedCallback callback)
     {
         gameObject.SetActive(true);   
@@ -25,16 +22,6 @@ public class UIPanel : MonoBehaviour {
         {
             callback();
         }
-    }
-
-    public void EnableTargetDetection()
-    {
-        sonarController.gameObject.SetActive(true);
-    }
-
-    public void DisableTargetDetection()
-    {
-        sonarController.gameObject.SetActive(false);
     }
 
     public delegate void OnShowAnimationFinishedCallback();
