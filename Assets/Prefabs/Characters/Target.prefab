@@ -771,7 +771,7 @@ MonoBehaviour:
   m_escapeRangeMin: 10
   m_escapeRangeMax: 20
   m_recalculateOrigin: 0
-  m_avoidPlayer: 0
+  m_avoidPlayer: 1
   m_avoidFrequence: 0
 --- !u!114 &114776754241726298
 MonoBehaviour:
