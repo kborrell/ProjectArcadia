@@ -18,7 +18,7 @@ public class PropScaler : MonoBehaviour
     private void OnValidate()
     {
         var position = visualObject.transform.position;
-        visualObject.transform.position = new Vector3(position.x, scale * offset, (scale * offset) - offset);
+        visualObject.transform.localPosition = new Vector3(position.x, scale * offset, (scale * offset) - offset);
         visualObject.transform.localScale = Vector3.one * scale;
     }
 
