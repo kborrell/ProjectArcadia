@@ -28,9 +28,14 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         for (int i=0; i < m_panelList.Count; i++)
         {
-            m_panelList[i].panel.HidePanel(null);
+            m_panelList[i].panel.gameObject.SetActive(false);
             m_panels[m_panelList[i].type] = m_panelList[i].panel;
         }
+    }
+
+    public bool IsDebugEnabled()
+    {
+        return m_debug;
     }
 
     public void ChangeScreen(UIPanelType panelType)
@@ -63,5 +68,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     private UIPanel m_currentPanel;
 
     [SerializeField] private List<UIPanelInfo> m_panelList;
-    [SerializeField] private Dictionary<UIPanelType, UIPanel> m_panels = new Dictionary<UIPanelType, UIPanel>();    
+    [SerializeField] private Dictionary<UIPanelType, UIPanel> m_panels = new Dictionary<UIPanelType, UIPanel>();
+
+    [SerializeField] bool m_debug;
 }

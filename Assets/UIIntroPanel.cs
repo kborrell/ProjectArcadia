@@ -20,12 +20,30 @@ public class UIIntroPanel : UIPanel {
             callback();
         }
 
-        StartCoroutine(ShowIntroTexts());
+        if (UIManager.Instance.IsDebugEnabled())
+        {
+            GameManager.Instance.StartGame();
+        }
+        else
+        {
+            StartCoroutine(ShowIntroTexts());
+        }
     }
 
     public override void HidePanel(OnHideAnimationFinishedCallback callback)
     {
-        StartCoroutine(HideCoroutine(callback));
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(HideCoroutine(callback));
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            if (callback != null)
+            {
+                callback();
+            }
+        }
     }
 
     IEnumerator ShowIntroTexts()
