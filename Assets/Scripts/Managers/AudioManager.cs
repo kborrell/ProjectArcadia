@@ -6,24 +6,20 @@ using UnityEngine;
 public class AudioManager : SingletonMonoBehaviour<AudioManager>
 {
     [SerializeField]
-    private bool _enabled;
+    private AudioSource _audioSource;
 
     [SerializeField]
     private AudioClip _backgroundAudio;
-    /*
+
     [SerializeField]
     private List<AudioClip> _levelSfxs;
-    */
-    [SerializeField]
-    private AudioSource _audioSource;
-    /*
-    [SerializeField]
-    private AudioSource _sfxSource;
-    */
+
     void Start()
     {
-        if (_enabled && !_audioSource.isPlaying)
+        if (!_audioSource.isPlaying)
+        {
             EnablebackgroundAudio();
+        }
     }
 
     public void EnablebackgroundAudio()
@@ -35,19 +31,26 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
             _audioSource.Play();
         }
     }
-    /*
+
     public void PlaySFX(string name)
     {
-        if (_sfxSource.isPlaying)
-            return;
-
-        AudioClip file = _levelSfxs.Where(x => x.name == name).SingleOrDefault();
-
-        if (file != null)
-        {
-            _sfxSource.clip = file;
-            _sfxSource.Play();
-        }
+        StartCoroutine(PlaySfxRoutine(name));
     }
-    */
+
+    public IEnumerator PlaySfxRoutine(string sfx)
+    {
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = _levelSfxs.Where(x => x.name == sfx).SingleOrDefault();
+
+        if (audioSource.clip != null)
+        {
+            audioSource.Play();
+
+            while (audioSource.isPlaying)
+            {
+                yield return null;
+            }
+        }
+        Destroy(audioSource);
+    }
 }
