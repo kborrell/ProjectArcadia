@@ -7,6 +7,9 @@ public class CharacterIAMovement : MonoBehaviour {
     public float m_positionRange, m_timeToRecalculate;
     public bool m_recalculateOrigin;
 
+	public bool m_avoidPlayer;
+	public float m_avoidFrequence;
+
     private Vector3 m_origin;
     private float m_timeLeftToRecalculate;
 
@@ -39,14 +42,31 @@ public class CharacterIAMovement : MonoBehaviour {
 
     private Vector3 getNextTargetPosition()
     {
-        Vector3 delta = new Vector3();
-        if (m_recalculateOrigin)
-        {
-            m_origin = gameObject.transform.position;
-        }
-        delta.x = Random.Range(m_origin.x - m_positionRange, m_origin.x + m_positionRange);
-        delta.z = Random.Range(m_origin.z - m_positionRange, m_origin.z + m_positionRange);
-        return delta;
+		Character playerCharacter = CharactersManager.Instance.getPlayerController ().controlledCharacter;
+
+		if (m_avoidPlayer && playerCharacter!= null && Random.Range (0.0f, 1.0f) < m_avoidFrequence) 
+		{
+			Vector3 delta = new Vector3 ();
+			delta.x = transform.position.x - playerCharacter.transform.position.x ;
+			delta.z = transform.position.z - playerCharacter.transform.position.z ;
+			delta.Normalize ();
+
+			delta *= m_positionRange;
+
+			return delta;
+		}
+		else 
+		{
+			Vector3 delta = new Vector3();
+			if (m_recalculateOrigin)
+			{
+				m_origin = gameObject.transform.position;
+			}
+			delta.x = Random.Range(m_origin.x - m_positionRange, m_origin.x + m_positionRange);
+			delta.z = Random.Range(m_origin.z - m_positionRange, m_origin.z + m_positionRange);
+			return delta;
+		}
+
     }
 
     public void SetEnabled(bool enabled)
