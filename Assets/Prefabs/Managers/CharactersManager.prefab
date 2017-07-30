@@ -315,8 +315,8 @@ MonoBehaviour:
   playerController: {fileID: 0}
   characterPrefabs:
   - {fileID: 1231225206833378, guid: 74c2cbbefd6b0b340a8607c38a380aef, type: 2}
-  - {fileID: 1495898668104758, guid: 17347892dc93d7d48b7868f3f58fc611, type: 2}
   - {fileID: 1281989112511786, guid: 87f6caa905b90854cb25ce439968f2e8, type: 2}
+  - {fileID: 1495898668104758, guid: 17347892dc93d7d48b7868f3f58fc611, type: 2}
   - {fileID: 1123187691605462, guid: eef09789e561e1944bd620e77dea27f3, type: 2}
   - {fileID: 1633479908539660, guid: 3a9d1b9169637cf40875688b397c6763, type: 2}
   spawnPoints:
