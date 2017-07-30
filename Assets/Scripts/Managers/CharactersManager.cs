@@ -61,9 +61,7 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 				while (mapCharacters.Count < enemiesOnMap) 
 				{
 					int type = Random.Range (0, characterPrefabs.Count);
-					Character ch = Instantiate(characterPrefabs[type]).GetComponent<Character>() as Character;
-					ch.transform.position = spawnPoints [m_lastSpawnUsed].transform.position;
-					ch.m_characterIAMovement.SetOrigin(ch.transform.position);
+					Character ch = Instantiate(characterPrefabs[type], spawnPoints [m_lastSpawnUsed].transform.position, Quaternion.Euler(new Vector3(45.0f, 0.0f, 0.0f))).GetComponent<Character>() as Character;
 					m_lastSpawnUsed++;
 					m_lastSpawnUsed %= spawnPoints.Count;
 					mapCharacters.Add (ch);
