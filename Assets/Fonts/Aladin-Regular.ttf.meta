@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c157f604f86d8a94f96facc023d1362c
+timeCreated: 1501405181
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Aladin
+  fontNames:
+  - Aladin
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

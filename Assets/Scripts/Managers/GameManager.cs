@@ -17,5 +17,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         CameraController.Instance.Initialize();
         TeleportManager.Instance.Initialize();
         CharactersManager.Instance.Initialize();
+
+        UIManager.Instance.ChangeScreen(UIManager.UIPanelType.MainMenu);
+    }
+
+    public void StartGame()
+    {
+        UIManager.Instance.ChangeScreen(UIManager.UIPanelType.Gameplay);
+        CharactersManager.Instance.getPlayerController().TurnOnLights();
     }
 }
