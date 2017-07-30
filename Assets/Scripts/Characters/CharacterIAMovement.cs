@@ -15,6 +15,8 @@ public class CharacterIAMovement : MonoBehaviour {
     private Vector3 m_origin, m_facingDirection;
     private float m_timeLeftToRecalculate;
 
+	public GameObject AngrySprite;
+
     private UnityEngine.AI.NavMeshAgent m_navMeshAgent;
     void Awake()
     {
@@ -157,10 +159,11 @@ public class CharacterIAMovement : MonoBehaviour {
 		m_angry = true;
 		m_timeToRecalculate = 0.1f;
 		m_timeToRecalculate = 0;
-		foreach (Renderer rend in GetComponentsInChildren<Renderer>())
+		AngrySprite.SetActive(true);
+		/*foreach (Renderer rend in GetComponentsInChildren<Renderer>())
 		{
 			rend.material.color = Color.red;
-		}
+		}*/
 	}
 	public bool IsAngry()
 	{
