@@ -16,10 +16,6 @@ public class CharacterMovement : MonoBehaviour {
 
     private void Start()
     {
-        if (m_invertedMovement)
-        {
-            m_speed = -m_speed;
-        }
     }
 
     void Update()
@@ -31,7 +27,7 @@ public class CharacterMovement : MonoBehaviour {
 
             if (moveHorizontal != 0 || moveVertical != 0)
             {
-                m_facingDirection = new Vector3(moveHorizontal, 0, moveVertical);
+                m_facingDirection = new Vector3(moveHorizontal, 0, moveVertical) * ((m_invertedMovement) ? -1 : 1);
                 transform.position += m_facingDirection * m_speed * Time.deltaTime;
             }
         }
@@ -46,4 +42,9 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] private bool m_invertedMovement = false;
     private Vector3 m_facingDirection;
     private bool m_movementEnabled = true;
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, m_facingDirection);
+    }
 }
