@@ -8,6 +8,7 @@ public class CharacterSonar : MonoBehaviour {
     private bool m_chargingSonar;
     private bool m_sonarActive;
     private float m_chargingTime;
+    private float m_chargedTimer;
     private bool m_sonarType;
 
     void Start()
@@ -26,15 +27,37 @@ public class CharacterSonar : MonoBehaviour {
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 if (!m_sonarActive && !m_chargingSonar)
-                    StartCoroutine(StartSonar());
+                {
+					m_chargingSonar = true;
+					m_chargedTimer = 0f;
+                    if (!m_sonarType)
+                        m_character.SetCharacterMovementEnabled(false);
+                }
             }
 
             if(Input.GetKeyUp(KeyCode.Space))
             {
-                if (m_chargingSonar && !m_sonarActive)
-                    StopCoroutine(StartSonar());
-                else if (m_sonarActive)
+                if (!m_sonarActive)
+                {
+                    Debug.Log("Stop charging");
+                    m_chargingSonar = false;
+                    m_chargedTimer = 0f;
+					if (!m_sonarType)
+						m_character.SetCharacterMovementEnabled(true);
+                }
+                else
                     StopSonar();
+            }
+
+            if (m_chargingSonar)
+            {
+				Debug.Log("Charging Sonar");
+				m_chargedTimer += Time.deltaTime;
+                if (m_chargedTimer >= m_chargingTime)
+                {
+					StartSonar();
+					m_chargingSonar = false;
+				}
             }
         }
     }
@@ -44,13 +67,8 @@ public class CharacterSonar : MonoBehaviour {
         CharacterEnergy.OnCharacterDead -= StopOnDead;
     }
 
-    IEnumerator StartSonar()
+    void StartSonar()
     {
-        Debug.Log("Charging Sonar");
-        m_chargingSonar = true;
-        if (!m_sonarType)
-            m_character.SetCharacterMovementEnabled(false);
-		yield return new WaitForSeconds(m_chargingTime);
         Debug.Log("Sonar charged");
         m_sonarActive = true;
         //Call the sonar UI.
@@ -60,19 +78,21 @@ public class CharacterSonar : MonoBehaviour {
     void StopSonar()
     {
         Debug.Log("Sonar stopped");
-        if (!m_sonarType)
-            m_character.SetCharacterMovementEnabled(true);
-		m_chargingSonar = false;
 		m_sonarActive = false;
+		if (!m_sonarType)
+            m_character.SetCharacterMovementEnabled(true);
         //Stop the sonar UI.
 
     }
 
     void StopOnDead()
     {
-        if (m_chargingSonar && !m_sonarActive)
-            StopCoroutine(StartSonar());
-        else if (m_sonarActive)
-            StopSonar();
+        if (!m_sonarActive && m_chargingSonar)
+		{
+			m_chargingSonar = false;
+			m_chargedTimer = 0f;
+		}
+		else
+			StopSonar();
     }
 }
