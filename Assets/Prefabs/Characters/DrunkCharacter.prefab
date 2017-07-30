@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81f72156d2e21045998a8f5cc406d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_characterType: 0
+  m_characterType: 4
 --- !u!114 &114455571900778942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +143,8 @@ MonoBehaviour:
   m_positionRange: 10
   m_timeToRecalculate: 3
   m_recalculateOrigin: 0
+  m_avoidPlayer: 0
+  m_avoidFrequence: 0
 --- !u!114 &114692587323729070
 MonoBehaviour:
   m_ObjectHideFlags: 1
