@@ -45,6 +45,10 @@ public class PlayerController : MonoBehaviour {
 
 	public void possesCharacter(Character character)
 	{
+        if (character == CharactersManager.Instance.getTargetCharacter())
+        {
+            GameManager.Instance.EndGame(true);
+        }
         // remove old character
         Character previousCharacter = TeleportManager.Instance.GetPreviousCharacter();
         if(previousCharacter != null)
