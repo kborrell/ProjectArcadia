@@ -10,6 +10,8 @@ public class DefaultVision : CharacterVision {
         light.type = LightType.Point;
         light.range = GetVisionRange();
         light.transform.localPosition = new Vector3(-0.1f, 4.2f, -2.8f);
+
+		SetTunnelMaskEnabled (false);
     }
 
     

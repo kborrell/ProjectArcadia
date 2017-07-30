@@ -28,9 +28,11 @@ GameObject:
   - component: {fileID: 195950038358948158}
   - component: {fileID: 54283449205630880}
   - component: {fileID: 114905479741637164}
+  - component: {fileID: 135580066149065116}
+  - component: {fileID: 114951499166989490}
   m_Layer: 0
   m_Name: Generic
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +48,6 @@ GameObject:
   - component: {fileID: 33482559010384906}
   - component: {fileID: 23497392184347090}
   - component: {fileID: 114862962173022580}
-  - component: {fileID: 135264871918835148}
   m_Layer: 0
   m_Name: CharacterAnimation
   m_TagString: Untagged
@@ -210,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1981c2a2b7e11ff4cb534f08a326302b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialEnergy: 8
+  m_initialEnergy: 8000
   m_decreaseRate: 1
 --- !u!114 &114862962173022580
 MonoBehaviour:
@@ -239,7 +240,7 @@ MonoBehaviour:
   calculateTangents: 0
   logErrors: 0
   disableRenderingOnOverride: 1
-  _animationName: walk
+  _animationName: 1_front_walk
   loop: 1
   timeScale: 1
 --- !u!114 &114905479741637164
@@ -256,18 +257,35 @@ MonoBehaviour:
   visualObject: {fileID: 4798326932913604}
   offset: 1
   scale: 0.24
---- !u!135 &135264871918835148
+--- !u!114 &114951499166989490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231225206833378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e925eb12702a69b4a844de8d24414cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletons:
+  - {fileID: 11400000, guid: 84df164a22cf20449a2ecc5cb3262db6, type: 2}
+  - {fileID: 11400000, guid: 975a53252b83d59479032261d72d5ba1, type: 2}
+  - {fileID: 11400000, guid: 6c4974be51e730940a2784e1de175357, type: 2}
+  skeletonAnimation: {fileID: 114862962173022580}
+  characterMovement: {fileID: 114607449166263144}
+--- !u!135 &135580066149065116
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1498102232537404}
+  m_GameObject: {fileID: 1231225206833378}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.07
-  m_Center: {x: -0, y: 0, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195950038358948158
 NavMeshAgent:
   m_ObjectHideFlags: 1

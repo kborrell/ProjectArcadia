@@ -24,40 +24,40 @@ public class CharacterSonar : MonoBehaviour {
     {
         if(m_character.IsPossessed())
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (m_chargingSonar)
             {
-                if (!m_sonarActive && !m_chargingSonar)
+                if (Input.GetKeyUp(KeyCode.Space))
                 {
-					m_chargingSonar = true;
-					m_chargedTimer = 0f;
+                    Debug.Log("Stop charging");
+                    StopSonar();
+                    m_chargingSonar = false;
+                    m_chargedTimer = 0f;
+                    if (!m_sonarType)
+                        m_character.SetCharacterMovementEnabled(true);
+                }
+                else
+                {
+                    Debug.Log("Charging Sonar");
+                    m_chargedTimer += Time.deltaTime;
+                    if (m_chargedTimer >= m_chargingTime)
+                    {
+                        StartSonar();
+                        m_chargingSonar = false;
+                        m_chargedTimer = 0f;
+                        if (!m_sonarType)
+                            m_character.SetCharacterMovementEnabled(true);
+                    }
+                }
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    m_chargingSonar = true;
+                    m_chargedTimer = 0f;
                     if (!m_sonarType)
                         m_character.SetCharacterMovementEnabled(false);
                 }
-            }
-
-            if(Input.GetKeyUp(KeyCode.Space))
-            {
-                if (!m_sonarActive)
-                {
-                    Debug.Log("Stop charging");
-                    m_chargingSonar = false;
-                    m_chargedTimer = 0f;
-					if (!m_sonarType)
-						m_character.SetCharacterMovementEnabled(true);
-                }
-                else
-                    StopSonar();
-            }
-
-            if (m_chargingSonar)
-            {
-				Debug.Log("Charging Sonar");
-				m_chargedTimer += Time.deltaTime;
-                if (m_chargedTimer >= m_chargingTime)
-                {
-					StartSonar();
-					m_chargingSonar = false;
-				}
             }
         }
     }
