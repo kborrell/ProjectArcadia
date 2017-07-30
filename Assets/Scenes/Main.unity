@@ -740,6 +740,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114949129530670644, guid: c24e08dee43b9644cb32b49e3e19b17c,
+        type: 2}
+      propertyPath: m_Text
+      value: LOST SOUL
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c24e08dee43b9644cb32b49e3e19b17c, type: 2}
   m_IsPrefabParent: 0
