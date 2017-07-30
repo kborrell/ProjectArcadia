@@ -23,6 +23,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         CharactersManager.Instance.Initialize();
 
         UIManager.Instance.ChangeScreen(UIManager.UIPanelType.MainMenu);
+
+        TeleportManager.Instance.enabled = false;
     }
 
     public void StartGame()
@@ -31,6 +33,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         CharactersManager.Instance.getPlayerController().TurnOnLights();
 
         CharacterEnergy.OnCharacterDead += OnCharacterDead;
+
+
+
     }
 
     public void EndGame(bool win)
@@ -44,5 +49,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void OnCharacterDead()
     {
         EndGame(false);
+    }
+
+    IEnumerator EnableTeleport()
+    {
+        yield return new WaitForSeconds(2f);
+        TeleportManager.Instance.enabled = true;
     }
 }
