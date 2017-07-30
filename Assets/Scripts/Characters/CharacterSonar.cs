@@ -123,9 +123,12 @@ public class CharacterSonar : MonoBehaviour {
 
         AudioManager.Instance.StopSFX("Sonar");
 
-        m_arrow.color = new Color(m_arrow.color.r, m_arrow.color.g, m_arrow.color.b, 1f);
+        if (m_arrow != null)
+        {
+            m_arrow.color = new Color(m_arrow.color.r, m_arrow.color.g, m_arrow.color.b, 1f);
 
-        StartCoroutine(DoImageFade(false));
+            StartCoroutine(DoImageFade(false));
+        }
     }
 
     void StopOnDead()

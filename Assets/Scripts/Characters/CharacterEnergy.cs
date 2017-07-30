@@ -22,7 +22,8 @@ public class CharacterEnergy : MonoBehaviour {
     private void KillCharacter()
     {
 		if (OnCharacterDead != null) {
-			OnCharacterDead ();
+            m_character.Dead = true;
+            OnCharacterDead ();
 		}
     }
 
