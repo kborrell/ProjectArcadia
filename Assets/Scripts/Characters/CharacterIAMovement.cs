@@ -36,8 +36,6 @@ public class CharacterIAMovement : MonoBehaviour {
             m_timeLeftToRecalculate = m_timeToRecalculate;
             m_navMeshAgent.destination = getNextTargetPosition();
         }
-
-		gameObject.transform.rotation = Quaternion.Euler (new Vector3 (45, 0, 0));
     }
 
     private Vector3 getNextTargetPosition()
@@ -73,8 +71,6 @@ public class CharacterIAMovement : MonoBehaviour {
     {
         this.enabled = enabled;
         m_navMeshAgent.enabled = enabled;
-
-        gameObject.transform.rotation = Quaternion.Euler(new Vector3(45, 0, 0));
     }
 
     //void OnDrawGizmosSelected()
