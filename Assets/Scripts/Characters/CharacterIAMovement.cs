@@ -50,6 +50,8 @@ public class CharacterIAMovement : MonoBehaviour {
 			delta.Normalize ();
 
 			delta *= m_positionRange;
+            delta += transform.position;
+
 
 			return delta;
 		}
