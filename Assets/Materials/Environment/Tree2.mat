@@ -83,13 +83,13 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 0
-    - _Hue: 0
+    - _Hue: 0.087
     - _Metallic: 0
     - _Mode: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RenderQueue: 0
-    - _Saturation: 1
+    - _Saturation: 0.8
     - _ShadowAlphaCutoff: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 0
