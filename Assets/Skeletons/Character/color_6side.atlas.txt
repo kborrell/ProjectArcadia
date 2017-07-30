@@ -1,0 +1,48 @@
+
+color_6side.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+side_brazo_dere
+  rotate: true
+  xy: 487, 95
+  size: 104, 223
+  orig: 104, 223
+  offset: 0, 0
+  index: -1
+side_brazo_izq
+  rotate: true
+  xy: 712, 96
+  size: 103, 223
+  orig: 103, 223
+  offset: 0, 0
+  index: -1
+side_cabeza
+  rotate: true
+  xy: 276, 44
+  size: 155, 209
+  orig: 155, 209
+  offset: 0, 0
+  index: -1
+side_pierna_dere
+  rotate: true
+  xy: 487, 2
+  size: 91, 110
+  orig: 91, 110
+  offset: 0, 0
+  index: -1
+side_pierna_izq
+  rotate: true
+  xy: 599, 2
+  size: 91, 110
+  orig: 91, 110
+  offset: 0, 0
+  index: -1
+side_torso
+  rotate: true
+  xy: 2, 30
+  size: 169, 272
+  orig: 169, 272
+  offset: 0, 0
+  index: -1

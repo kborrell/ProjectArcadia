@@ -1,0 +1,62 @@
+
+color_5front.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+back_piernaderecha
+  rotate: true
+  xy: 560, 133
+  size: 95, 122
+  orig: 95, 122
+  offset: 0, 0
+  index: -1
+back_piernaizq
+  rotate: true
+  xy: 684, 69
+  size: 79, 124
+  orig: 79, 124
+  offset: 0, 0
+  index: -1
+front_bra_dere
+  rotate: true
+  xy: 350, 37
+  size: 83, 172
+  orig: 83, 172
+  offset: 0, 0
+  index: -1
+front_bra_izq
+  rotate: true
+  xy: 350, 122
+  size: 106, 208
+  orig: 106, 208
+  offset: 0, 0
+  index: -1
+front_cabeza
+  rotate: false
+  xy: 2, 2
+  size: 171, 226
+  orig: 171, 226
+  offset: 0, 0
+  index: -1
+front_pier_dere
+  rotate: true
+  xy: 817, 146
+  size: 82, 126
+  orig: 82, 126
+  offset: 0, 0
+  index: -1
+front_pierna_izq
+  rotate: true
+  xy: 684, 150
+  size: 78, 131
+  orig: 78, 131
+  offset: 0, 0
+  index: -1
+front_torso
+  rotate: false
+  xy: 175, 29
+  size: 173, 199
+  orig: 173, 199
+  offset: 0, 0
+  index: -1
