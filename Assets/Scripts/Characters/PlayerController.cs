@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 
 	public Character controlledCharacter { get; private set; }
     public Light characterLight;
+    public GameObject m_deadParticles;
 
     private Character m_characterToDelete = null;
 
@@ -80,9 +81,17 @@ public class PlayerController : MonoBehaviour {
 			movement.SetEnabled (false);
 		}
         // display animations
-        yield return new WaitForSeconds(3f);
+        GameObject particles = Instantiate(m_deadParticles, character.transform.position, character.transform.rotation);
+        StartCoroutine("DestroyParticles", particles);
+        yield return new WaitForSeconds(0f);
         // remove old character
         CharactersManager.Instance.RemoveCharacter(character);
+    }
+
+    private IEnumerator DestroyParticles(GameObject particles)
+    {
+        yield return new WaitForSeconds(1.5f);
+        Destroy(particles.gameObject);
     }
 
 }
