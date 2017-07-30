@@ -28,6 +28,7 @@ public class CharacterMovement : MonoBehaviour {
             if (moveHorizontal != 0 || moveVertical != 0)
             {
                 m_facingDirection = new Vector3(moveHorizontal, 0, moveVertical) * ((m_invertedMovement) ? -1 : 1);
+				m_facingDirection.Normalize();
                 transform.position += m_facingDirection * m_speed * Time.deltaTime;
             }
         }
