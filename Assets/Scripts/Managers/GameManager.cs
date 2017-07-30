@@ -11,8 +11,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Initialize();
     }
 
+	public bool GameStarted { get; private set; }
+
     private void Initialize()
     {
+		GameStarted = false;
+
         UIManager.Instance.Initialize();
         CameraController.Instance.Initialize();
         TeleportManager.Instance.Initialize();
@@ -25,5 +29,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         UIManager.Instance.ChangeScreen(UIManager.UIPanelType.Gameplay);
         CharactersManager.Instance.getPlayerController().TurnOnLights();
+
+		GameStarted = true;
     }
 }

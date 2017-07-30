@@ -11,9 +11,13 @@ public class TunnelVision : CharacterVision {
     public override void Init(Light light)
     {
 		light.type = LightType.Point;
-		light.range = GetVisionRange();
-		light.transform.localPosition = new Vector3(-0.1f, 3.25f, -3.8f);
 
+		light.type = LightType.Spot;
+		light.range = GetVisionRange();
+		light.spotAngle = m_tunnelAngle;
+		light.transform.localPosition = new Vector3(-0.1f, -2.4f, -2.9f);
+		light.transform.localEulerAngles = new Vector3(-50, 0, 0);
+        		
 		SetTunnelMaskEnabled (true);
     }
 
