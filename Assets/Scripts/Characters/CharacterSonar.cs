@@ -1,8 +1,22 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSonar : MonoBehaviour {
+
+    [SerializeField]
+    private Image m_sonarIndicator;
+
+    [SerializeField]
+    private Image m_sonarIndicatorBackground;
+
+    [SerializeField]
+    private Image m_arrowParent;
+
+    [SerializeField]
+    private Image m_arrow;
 
     private Character m_character;
     private bool m_chargingSonar;
@@ -28,25 +42,17 @@ public class CharacterSonar : MonoBehaviour {
             {
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
-                    Debug.Log("Stop charging");
                     AudioManager.Instance.StopSFX("Sonar_Charge");
-                    StopSonar();
-                    m_chargingSonar = false;
-                    m_chargedTimer = 0f;
-                    if (!m_sonarType)
-                        m_character.SetCharacterMovementEnabled(true);
+                    StopChargingSonar();
                 }
                 else
                 {
-                    Debug.Log("Charging Sonar");
+                    m_sonarIndicator.fillAmount = (m_chargedTimer / m_chargingTime);
+
                     m_chargedTimer += Time.deltaTime;
                     if (m_chargedTimer >= m_chargingTime)
                     {
                         StartSonar();
-                        m_chargingSonar = false;
-                        m_chargedTimer = 0f;
-                        if (!m_sonarType)
-                            m_character.SetCharacterMovementEnabled(true);
                     }
                 }
             }
@@ -56,12 +62,14 @@ public class CharacterSonar : MonoBehaviour {
                 {
                     if(!m_chargingSonar)
 						AudioManager.Instance.PlaySFX("Sonar_Charge");
-					m_chargingSonar = true;
-                    m_chargedTimer = 0f;
-                    if (!m_sonarType)
-                        m_character.SetCharacterMovementEnabled(false);
+                    StarChargeSonar();
                 }
             }
+        }
+        
+        if (m_arrowParent != null)
+        {
+            m_arrowParent.transform.LookAt(CharactersManager.Instance.getTargetCharacter().transform);
         }
     }
 
@@ -73,22 +81,54 @@ public class CharacterSonar : MonoBehaviour {
     void StartSonar()
     {
         Debug.Log("Sonar charged");
+
+        //m_sonarIndicator.transform.parent.gameObject.SetActive(false);
         m_sonarActive = true;
-        //Call the sonar UI.
-        (UIManager.Instance.GetPanel(UIManager.UIPanelType.Gameplay) as UIGameplayPanel).EnableTargetDetection();
+        m_chargingSonar = false;
+        m_chargedTimer = 0f;
+        if (!m_sonarType)
+            m_character.SetCharacterMovementEnabled(true);
+
+        StopChargingSonar();
+
         AudioManager.Instance.StopSFX("Sonar_Charge");
         AudioManager.Instance.PlaySFX("Sonar");
+        //(UIManager.Instance.GetPanel(UIManager.UIPanelType.Gameplay) as UIGameplayPanel).DisableTargetDetection();
     }
 
-    void StopSonar()
+    void StarChargeSonar()
     {
-        Debug.Log("Sonar stopped");
-		m_sonarActive = false;
-		if (!m_sonarType)
+        Debug.Log("Sonar charging started");
+
+        //m_sonarIndicator.transform.parent.gameObject.SetActive(true);
+        m_chargingSonar = true;
+        m_sonarActive = false;
+        m_chargedTimer = 0f;
+        if (!m_sonarType)
+            m_character.SetCharacterMovementEnabled(false);
+        
+        StartCoroutine(DoImageFade(true));
+    }
+
+    void StopChargingSonar()
+    {
+        Debug.Log("Sonar charging stopped");
+
+        //m_sonarIndicator.transform.parent.gameObject.SetActive(false);
+        m_chargingSonar = false;
+        m_sonarActive = false;
+        m_chargedTimer = 0f;
+        if (!m_sonarType)
             m_character.SetCharacterMovementEnabled(true);
-        //Stop the sonar UI.
-        (UIManager.Instance.GetPanel(UIManager.UIPanelType.Gameplay) as UIGameplayPanel).DisableTargetDetection();
+
         AudioManager.Instance.StopSFX("Sonar");
+
+        if (m_arrow != null)
+        {
+            m_arrow.color = new Color(m_arrow.color.r, m_arrow.color.g, m_arrow.color.b, 1f);
+
+            StartCoroutine(DoImageFade(false));
+        }
     }
 
     void StopOnDead()
@@ -99,6 +139,15 @@ public class CharacterSonar : MonoBehaviour {
 			m_chargedTimer = 0f;
 		}
 		else
-			StopSonar();
+            StopChargingSonar();
+    }
+
+    public IEnumerator DoImageFade(bool fadeIn)
+    {
+        if(!fadeIn)
+            m_arrow.DOColor(new Color(m_arrow.color.r, m_arrow.color.g, m_arrow.color.b, 0f), 3.5f);
+        
+        m_sonarIndicator.DOColor(new Color(m_sonarIndicator.color.r, m_sonarIndicator.color.g, m_sonarIndicator.color.b, fadeIn ? 1f : 0f), 0.75f);
+        yield return m_sonarIndicatorBackground.DOColor(new Color(m_sonarIndicatorBackground.color.r, m_sonarIndicatorBackground.color.g, m_sonarIndicatorBackground.color.b, fadeIn ? 1f : 0f), 0.75f).WaitForCompletion();
     }
 }
