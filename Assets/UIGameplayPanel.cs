@@ -8,12 +8,12 @@ public class UIGameplayPanel : UIPanel
 {
     public void EnableTargetDetection()
     {
-        sonarController.gameObject.SetActive(true);
+        StartCoroutine(sonarController.PlaySonarAnimation());
     }
 
     public void DisableTargetDetection()
     {
-        sonarController.gameObject.SetActive(false);
+
     }
 
     [SerializeField]
