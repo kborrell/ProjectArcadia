@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_initialEnergy: 8
-  m_decreaseRate: 1
+  m_decreaseRate: 0
 --- !u!114 &114512983652799798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -855,7 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81f72156d2e21045998a8f5cc406d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_characterType: 0
+  m_characterType: 6
 --- !u!114 &114893506903165506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -897,7 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e1423efba4a12438c0e0d780f22958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 5
+  m_speed: 1
   m_invertedMovement: 0
 --- !u!114 &114987418499744276
 MonoBehaviour:

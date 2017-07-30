@@ -315,6 +315,10 @@ MonoBehaviour:
   playerController: {fileID: 0}
   characterPrefabs:
   - {fileID: 1231225206833378, guid: 74c2cbbefd6b0b340a8607c38a380aef, type: 2}
+  - {fileID: 1495898668104758, guid: 17347892dc93d7d48b7868f3f58fc611, type: 2}
+  - {fileID: 1281989112511786, guid: 87f6caa905b90854cb25ce439968f2e8, type: 2}
+  - {fileID: 1123187691605462, guid: eef09789e561e1944bd620e77dea27f3, type: 2}
+  - {fileID: 1633479908539660, guid: 3a9d1b9169637cf40875688b397c6763, type: 2}
   spawnPoints:
   - {fileID: 1083175523420906}
   - {fileID: 1653948550432782}
@@ -325,10 +329,10 @@ MonoBehaviour:
   - {fileID: 1140821457353774}
   - {fileID: 1565184274490150}
   - {fileID: 1381724649724982}
-  targetPrefab: {fileID: 1483838849044954, guid: 62b63d6b405b94c308040a72dd681408,
+  targetPrefab: {fileID: 1616761540749790, guid: d97d8143f951847408547a635db75d52,
     type: 2}
   soulPrefab: {fileID: 1694763304928478, guid: d8603e078c9880b49b7bea519c84bf86, type: 2}
-  fistCharacterPrefab: {fileID: 1010771572845708, guid: 3fe508d44102e364d83a6b771edcc37d,
+  fistCharacterPrefab: {fileID: 1137449915909632, guid: 8387dcf1378f623499516d1f6d1d1090,
     type: 2}
   spawnFrequence: 5
   enemiesOnMap: 10
