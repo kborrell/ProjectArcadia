@@ -38,6 +38,21 @@ public class CharacterIAMovement : MonoBehaviour {
         }
     }
 
+    public bool IsMoving()
+    {
+        if (!m_navMeshAgent.pathPending)
+        {
+            if (m_navMeshAgent.remainingDistance <= m_navMeshAgent.stoppingDistance)
+            {
+                if (!m_navMeshAgent.hasPath || m_navMeshAgent.velocity.sqrMagnitude == 0f)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     private Vector3 getNextTargetPosition()
     {
 		Character playerCharacter = CharactersManager.Instance.getPlayerController ().controlledCharacter;
@@ -92,6 +107,12 @@ public class CharacterIAMovement : MonoBehaviour {
         {
             Gizmos.color = new Color(1, 0, 0, 0.2f);
             Gizmos.DrawSphere(transform.position, m_escapeRange);
+        }
+
+        if(!IsMoving())
+        {
+            Gizmos.color = new Color(0, 1, 1);
+            Gizmos.DrawSphere(transform.position, 0.3f);
         }
 
 
