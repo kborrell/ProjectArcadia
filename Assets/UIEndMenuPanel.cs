@@ -21,6 +21,7 @@ public class UIEndMenuPanel : UIPanel {
         m_titleText.DOFade(1.0f, 0.5f).OnComplete(() =>
         {
             m_restartButton.gameObject.SetActive(true);
+            Time.timeScale = 0;
         });     
     }
 

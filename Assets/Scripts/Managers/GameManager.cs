@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     protected override void Awake()
     {
         base.Awake();
+
+        Time.timeScale = 1.0f;
 
         Initialize();
     }
