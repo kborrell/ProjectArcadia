@@ -150,10 +150,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1219010244625616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab89dfe39890488d818c9e90f37f340, type: 3}
+  m_Script: {fileID: 11500000, guid: 37d51165e444af846a3819ec90e94cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 9.6
+  m_visionRange: 20
+  m_tunnelAngle: 60
 --- !u!114 &114482403375818312
 MonoBehaviour:
   m_ObjectHideFlags: 1

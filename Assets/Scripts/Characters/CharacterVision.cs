@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterVision : MonoBehaviour {
+public abstract class CharacterVision : MonoBehaviour {
 
-	[SerializeField] private float visionRange;
+    [SerializeField] private float m_visionRange;
 
-	public float GetVisionRange()
-	{
-		return visionRange;
-	}
+    public float GetVisionRange() { return m_visionRange; }
+    // initialize character light
+    public abstract void Init(Light light);
 }
