@@ -32,7 +32,13 @@ public class CharacterMovement : MonoBehaviour
             {
                 m_facingDirection = new Vector3(moveHorizontal, 0, moveVertical) * ((m_invertedMovement) ? -1 : 1);
                 m_facingDirection.Normalize();
-                transform.position += m_facingDirection * m_speed * Time.deltaTime;
+                Vector3 targetPosition = transform.position + m_facingDirection * m_speed * Time.deltaTime;
+
+                UnityEngine.AI.NavMeshHit hit;
+                if (UnityEngine.AI.NavMesh.SamplePosition(targetPosition, out hit, 1.0f, UnityEngine.AI.NavMesh.AllAreas))
+                {
+                    transform.position = targetPosition;
+                }
                 m_isMoving = true;
             }
             else
