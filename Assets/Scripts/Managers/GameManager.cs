@@ -37,6 +37,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         GameStarted = false;
         CharacterEnergy.OnCharacterDead -= OnCharacterDead;
+        StartCoroutine(EndGameMenu(win));
+    }
+
+    private IEnumerator EndGameMenu(bool win)
+    {
+        yield return new WaitForSeconds(1.3f);
         CharactersManager.Instance.getPlayerController().TurnOffLights();
         UIManager.Instance.ChangeScreen(win ? UIManager.UIPanelType.WinMenu : UIManager.UIPanelType.EndMenu);
     }
