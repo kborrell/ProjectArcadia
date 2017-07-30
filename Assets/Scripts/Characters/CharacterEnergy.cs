@@ -30,7 +30,7 @@ public class CharacterEnergy : MonoBehaviour {
     {
         m_currentEnergy -= m_decreaseRate;
 		if (OnEnergyValueChanged != null) {
-			OnEnergyValueChanged (m_currentEnergy);
+			OnEnergyValueChanged (m_currentEnergy, m_initialEnergy);
 		}
     }
 
@@ -66,6 +66,6 @@ public class CharacterEnergy : MonoBehaviour {
     public delegate void OnCharacterDeadEvent();
     public static event OnCharacterDeadEvent OnCharacterDead;
 
-    public delegate void OnEnergyValueChangedEvent(float newValue);
+    public delegate void OnEnergyValueChangedEvent(float newValue, float maxValue);
     public static event OnEnergyValueChangedEvent OnEnergyValueChanged;
 }
