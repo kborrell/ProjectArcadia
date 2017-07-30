@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e1423efba4a12438c0e0d780f22958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 1
+  m_speed: 5
   m_invertedMovement: 0
 --- !u!114 &114776446011687208
 MonoBehaviour:
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab89dfe39890488d818c9e90f37f340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 0
+  visionRange: 9.6
 --- !u!114 &114872192126162806
 MonoBehaviour:
   m_ObjectHideFlags: 1
