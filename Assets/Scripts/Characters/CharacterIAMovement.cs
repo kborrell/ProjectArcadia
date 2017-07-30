@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterIAMovement : MonoBehaviour {
 
-    public float m_positionRange, m_timeToRecalculate, m_escapeRange;
+    public float m_positionRange, m_timeToRecalculate, m_escapeRangeMin = 10, m_escapeRangeMax = 20;
     public bool m_recalculateOrigin;
 
 	public bool m_avoidPlayer;
@@ -62,7 +62,8 @@ public class CharacterIAMovement : MonoBehaviour {
 
         Vector3 delta = new Vector3();
 		if (m_avoidPlayer && playerCharacter!= null && Random.Range (0.0f, 1.0f) < m_avoidFrequence && 
-            Vector3.Distance(transform.position, playerCharacter.transform.position) < m_escapeRange) 
+            Vector3.Distance(transform.position, playerCharacter.transform.position) < m_escapeRangeMax &&
+            Vector3.Distance(transform.position, playerCharacter.transform.position) > m_escapeRangeMin) 
 		{
 			delta.x = transform.position.x - playerCharacter.transform.position.x ;
 			delta.z = transform.position.z - playerCharacter.transform.position.z ;
@@ -109,10 +110,11 @@ public class CharacterIAMovement : MonoBehaviour {
         if(m_avoidPlayer)
         {
             Gizmos.color = new Color(1, 0, 0, 0.2f);
-            Gizmos.DrawSphere(transform.position, m_escapeRange);
+            Gizmos.DrawSphere(transform.position, m_escapeRangeMin);
+            Gizmos.DrawSphere(transform.position, m_escapeRangeMax);
         }
 
-        if(!IsMoving())
+        if (!IsMoving())
         {
             Gizmos.color = new Color(0, 1, 1);
             Gizmos.DrawSphere(transform.position, 0.3f);

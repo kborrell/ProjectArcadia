@@ -115,6 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1d658629f6c458fa3f9ea06227f60c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sonarIndicator: {fileID: 0}
+  m_sonarIndicatorBackground: {fileID: 0}
+  m_arrowParent: {fileID: 0}
+  m_arrow: {fileID: 0}
 --- !u!114 &114269424306668600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,7 +182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_positionRange: 10
   m_timeToRecalculate: 3
-  m_escapeRange: 20
+  m_escapeRangeMin: 10
+  m_escapeRangeMax: 20
   m_recalculateOrigin: 0
   m_avoidPlayer: 1
   m_avoidFrequence: 0.75
