@@ -53,4 +53,28 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         }
         Destroy(audioSource);
     }
+
+    public void StopSFX(string name)
+    {
+		AudioSource[] sources = GetComponents<AudioSource>();
+
+		for (int i = 0; i < sources.Length; i++)
+		{
+            if (sources[i].clip.name == name)
+                sources[i].mute = true;
+		}
+    }
+
+    public bool IsSFXPlaying(string name)
+    {
+        AudioSource[] sources = GetComponents<AudioSource>();
+
+        for (int i = 0; i < sources.Length; i++)
+        {
+            if (sources[i].clip.name == name)
+                return true;
+        }
+
+        return false;
+    }
 }
