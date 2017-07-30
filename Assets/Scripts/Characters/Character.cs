@@ -75,18 +75,28 @@ public class Character : MonoBehaviour {
 	{
 		if (IsPossessed ()) {
 			return m_movementComponent.IsMoving ();
-		} else {
-			return m_characterIAMovement.IsMoving ();
+        }
+        else if (m_characterIAMovement != null)
+        {
+            return m_characterIAMovement.IsMoving ();
 		}
+        else
+        {
+            return false;
+        }
 	}
 
 	public Vector3 getMovementDirection()
 	{
 		if (IsPossessed ()) {
 			return m_movementComponent.GetFacingDirection ();
-		} else {
+		} else if (m_characterIAMovement != null) {
 			return m_characterIAMovement.GetFacingDirection ();
 		}
+        else
+        {
+            return new Vector3();
+        }
 	}
 
     [SerializeField] CharacterType m_characterType;

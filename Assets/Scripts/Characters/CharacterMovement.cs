@@ -23,7 +23,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        if (m_movementEnabled)
+        if (m_movementEnabled && GameManager.Instance.GameStarted)
         {
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");

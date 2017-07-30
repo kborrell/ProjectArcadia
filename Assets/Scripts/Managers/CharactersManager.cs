@@ -36,6 +36,7 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
         playerController.possesCharacter(ch);
 
 		targetCharacter = Instantiate (targetPrefab).GetComponent<Character> () as Character;
+        PlaceTarget(targetCharacter.gameObject);
     }
 
 	public PlayerController getPlayerController()
@@ -61,8 +62,7 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 				while (mapCharacters.Count < enemiesOnMap) 
 				{
 					int type = Random.Range (0, characterPrefabs.Count);
-					Character ch = Instantiate(characterPrefabs[type]).GetComponent<Character>() as Character;
-					ch.transform.position = spawnPoints [m_lastSpawnUsed].transform.position;
+					Character ch = Instantiate(characterPrefabs[type], spawnPoints [m_lastSpawnUsed].transform.position, Quaternion.Euler(new Vector3(45.0f, 0.0f, 0.0f))).GetComponent<Character>() as Character;
 					ch.m_characterIAMovement.SetOrigin(ch.transform.position);
 					m_lastSpawnUsed++;
 					m_lastSpawnUsed %= spawnPoints.Count;
@@ -78,5 +78,12 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
         Debug.Log("Removing character");
         mapCharacters.Remove(character);
         GameObject.Destroy(character.gameObject);
+    }
+
+    private void PlaceTarget(GameObject target)
+    {
+        int spawn = Random.Range(1, spawnPoints.Count-1);
+        target.transform.position = spawnPoints[spawn].transform.position;
+        target.GetComponent<Character>().m_characterIAMovement.SetOrigin(target.transform.position);
     }
 }

@@ -56,23 +56,46 @@ public class CharacterAnimation : MonoBehaviour
 		}
         else if (isMoving)
         {
-            if (dir == new Vector3(0, 0, 1) && currentState != State.up)
+			float x = dir.x;
+			float y = dir.z;
+
+			State newState;
+
+			if (Mathf.Abs (x) > Mathf.Abs (y)) {
+				if (x > 0) {
+					newState = State.right;
+				} else {
+					newState = State.left;
+				}
+			} else {
+				if (y > 0) 
+				{
+					newState = State.up;
+				}
+				else
+				{
+					newState = State.down;
+				}
+			}
+
+				
+			if (newState == State.up && currentState != State.up)
             {
                 currentState = State.up;
                 ActivateSkeleton(SkeletonType.back);
             }
-            else if (dir == new Vector3(0, 0, -1) && currentState != State.down)
+			else if (newState == State.down && currentState != State.down)
             {
                 currentState = State.down;
                 ActivateSkeleton(SkeletonType.front);
             }
-            else if (dir == new Vector3(1, 0, 0) && currentState != State.right)
+			else if (newState == State.right  && currentState != State.right)
             {
                 currentState = State.right;
                 ActivateSkeleton(SkeletonType.side);
                 skeletonAnimation[2].transform.localScale = new Vector3(-1, 1, 1);
             }
-            else if (dir == new Vector3(-1, 0, 0) && currentState != State.left)
+			else if (newState == State.left && currentState != State.left)
             {
                 currentState = State.left;
                 ActivateSkeleton(SkeletonType.side);

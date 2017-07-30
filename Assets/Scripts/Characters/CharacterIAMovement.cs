@@ -63,13 +63,14 @@ public class CharacterIAMovement : MonoBehaviour {
 		Character playerCharacter = CharactersManager.Instance.getPlayerController ().controlledCharacter;
 
         Vector3 delta = new Vector3();
-		if (m_angry)
+
+		if (!m_avoidPlayer && m_angry)
 		{
 			delta = playerCharacter.transform.position;
 		}
-		else if (m_avoidPlayer && playerCharacter!= null && Random.Range (0.0f, 1.0f) < m_avoidFrequence && 
-            Vector3.Distance(transform.position, playerCharacter.transform.position) < m_escapeRangeMax &&
-            Vector3.Distance(transform.position, playerCharacter.transform.position) > m_escapeRangeMin) 
+		else if (m_avoidPlayer && playerCharacter != null && /*Random.Range (0.0f, 1.0f) < m_avoidFrequence &&*/
+			Vector3.Distance(transform.position, playerCharacter.transform.position) < m_escapeRangeMax/* &&
+            Vector3.Distance(transform.position, playerCharacter.transform.position) > m_escapeRangeMin*/)
 		{
 			delta.x = transform.position.x - playerCharacter.transform.position.x ;
 			delta.z = transform.position.z - playerCharacter.transform.position.z ;
