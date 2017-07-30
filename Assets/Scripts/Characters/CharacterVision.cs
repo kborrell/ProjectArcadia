@@ -9,4 +9,10 @@ public abstract class CharacterVision : MonoBehaviour {
     public float GetVisionRange() { return m_visionRange; }
     // initialize character light
     public abstract void Init(Light light);
+
+	protected void SetTunnelMaskEnabled(bool enabled)
+	{
+		RectTransform rect = UIManager.Instance.m_tunnelMask.GetComponent<RectTransform> ();
+		rect.gameObject.SetActive (enabled);
+	}
 }
