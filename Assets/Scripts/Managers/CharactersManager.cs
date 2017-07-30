@@ -78,4 +78,10 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 		}
 
 	}
+
+    public void RemoveCharacter(Character character)
+    {
+        mapCharacters.Remove(character);
+        GameObject.Destroy(character.gameObject);
+    }
 }
