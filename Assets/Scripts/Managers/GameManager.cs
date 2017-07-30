@@ -34,7 +34,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         CharacterEnergy.OnCharacterDead += OnCharacterDead;
 
-
+        StartCoroutine(EnableTeleport());
 
     }
 
