@@ -33,11 +33,17 @@ public class CharacterMovement : MonoBehaviour
                 m_facingDirection = new Vector3(moveHorizontal, 0, moveVertical) * ((m_invertedMovement) ? -1 : 1);
                 m_facingDirection.Normalize();
                 transform.position += m_facingDirection * m_speed * Time.deltaTime;
-                m_isMoving = true;
+				m_isMoving = true;
+
+                if (!AudioManager.Instance.IsSFXPlaying("Dirt_Step"))
+					AudioManager.Instance.PlaySFX("Dirt_Step");
             }
             else
             {
-                m_isMoving = false;
+                if(m_isMoving && AudioManager.Instance.IsSFXPlaying("Dirt_Step"))
+					AudioManager.Instance.StopSFX("Dirt_Step");
+                
+				m_isMoving = false;
             }
         }
     }

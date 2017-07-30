@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
@@ -37,6 +37,8 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
             CharactersManager.Instance.getPlayerController().unpossesCurrentCharacter();
             DisplaySoulChange();
 
+            AudioManager.Instance.PlaySFX("Teleport");
+
 			Debug.Log("Teleported to " + character.name);
 		}
 	}
@@ -46,7 +48,7 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
         return m_previousCharacter;
     }
 
-	void Update () 
+	void Update ()
     {
         if (m_changingSoul)
             DisplaySoulChange();
@@ -81,6 +83,8 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 
         if (Vector3.Distance(m_particles.transform.position, m_objetiveCharacter.transform.position) <= 0.5f)
         {
+            AudioManager.Instance.StopSFX("Teleport");
+
             m_changingSoul = false;
             m_previousCharacter.SetCharacterMovementEnabled(true);
             CharactersManager.Instance.getPlayerController ().possesCharacter(m_objetiveCharacter);
