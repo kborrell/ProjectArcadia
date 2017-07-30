@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class TunnelVision : CharacterVision {
 
-    [SerializeField] private float m_tunnelAngle;
-    private Light m_light;
     // Use this for initialization
     public override void Init(Light light)
     {
-        m_light = light;
+		light.type = LightType.Point;
+		light.range = GetVisionRange();
+		light.transform.localPosition = new Vector3(-0.1f, 4.2f, -2.8f);
 
-        m_light.type = LightType.Spot;
-        m_light.range = GetVisionRange();
-        m_light.spotAngle = m_tunnelAngle;
-        m_light.transform.localPosition = new Vector3(-0.1f, -2.4f, -2.9f);
-        m_light.transform.localEulerAngles = new Vector3(-50, 0, 0);
+		SetTunnelMaskEnabled (true);
     }
+
+	void Update()
+	{
+		
+		Vector3 direction = CharactersManager.Instance.getPlayerController ().controlledCharacter.m_movementComponent.GetFacingDirection ();
+
+		float angle = Vector3.Angle (Vector3.forward, direction);
+
+		if (direction.x > 0) 
+		{
+			angle *= -1;
+		}
+
+
+		GetRect().transform.rotation = Quaternion.Euler(new Vector3(0,0,angle));
+	}
 }

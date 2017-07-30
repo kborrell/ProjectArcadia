@@ -77,4 +77,6 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     [SerializeField] private Dictionary<UIPanelType, UIPanel> m_panels = new Dictionary<UIPanelType, UIPanel>();
 
     [SerializeField] bool m_debug;
+
+	public GameObject m_tunnelMask;
 }

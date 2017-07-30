@@ -22,6 +22,7 @@ public class Character : MonoBehaviour {
             m_hasBeenPossessed = true;
         m_movementComponent.SetEnabled(enable);
         if (m_characterIAMovement) m_characterIAMovement.SetEnabled(!enable);
+		m_characterVision.enabled = enable;
         m_isPossessed = enable;
     }
 
@@ -58,6 +59,8 @@ public class Character : MonoBehaviour {
 	    m_characterVision = GetComponent<CharacterVision> ();
         m_sonarComponent = GetComponent<CharacterSonar>();
         m_characterIAMovement = GetComponent<CharacterIAMovement>();
+
+		m_characterVision.enabled = false;
     }
 
     void Update ()
@@ -68,7 +71,7 @@ public class Character : MonoBehaviour {
     [SerializeField] CharacterType m_characterType;
 
     private CharacterEnergy m_energyComponent;
-	private CharacterMovement m_movementComponent;
+	public CharacterMovement m_movementComponent { get; private set; }
 	public CharacterVision m_characterVision { get; private set; }
     private CharacterSonar m_sonarComponent;
     private CharacterIAMovement m_characterIAMovement;
