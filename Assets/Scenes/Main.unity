@@ -1375,7 +1375,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 28c4e5148267f5e4a9767d816cd5258e, type: 2}
-  - {fileID: 0}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1472,7 +1472,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -716228136
+  randomSeed: -495880392
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4002,7 +4002,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     ratio: 1
     lifetime:
       serializedVersion: 2
@@ -5489,7 +5489,7 @@ Prefab:
     - target: {fileID: 114931350439100314, guid: ef6b1ceac0fe11b409db54673981af0d,
         type: 2}
       propertyPath: m_soulSpeed
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114931350439100314, guid: ef6b1ceac0fe11b409db54673981af0d,
         type: 2}
