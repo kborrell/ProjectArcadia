@@ -68,7 +68,8 @@ public class PlayerController : MonoBehaviour {
     // Display animations and call CharactersManager::RemoveCharacter after certain delay
     private IEnumerator RemoveCharacter(Character character)
     {
-        character.GetComponent<CharacterIAMovement>().SetEnabled(false);
+        CharacterIAMovement iaMovement = character.GetComponent<CharacterIAMovement>();
+        if(iaMovement != null) iaMovement.SetEnabled(false);
         // display animations
         yield return new WaitForSeconds(3f);
         // remove old character
