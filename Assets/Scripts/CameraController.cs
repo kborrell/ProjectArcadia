@@ -47,7 +47,7 @@ public class CameraController : SingletonMonoBehaviour<CameraController>
 
             CharacterMovement charMovement = playerToFollow.GetComponent<CharacterMovement>();
 
-            if(charMovement != null)
+            if(charMovement != null && charMovement.IsMoving())
             {
                 facingVector = charMovement.GetFacingDirection();
                 float speed = charMovement.GetSpeed();
