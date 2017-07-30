@@ -76,9 +76,9 @@ public class CharacterIAMovement : MonoBehaviour {
 			delta.x = Random.Range(m_origin.x - m_positionRange, m_origin.x + m_positionRange);
 			delta.z = Random.Range(m_origin.z - m_positionRange, m_origin.z + m_positionRange);
 		}
-
-		delta += transform.position;
+			
         m_facingDirection = delta;
+		delta += transform.position;
         m_facingDirection.Normalize();
 
         return delta;
