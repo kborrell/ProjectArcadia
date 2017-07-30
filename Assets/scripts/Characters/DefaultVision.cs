@@ -9,7 +9,7 @@ public class DefaultVision : CharacterVision {
     {
         light.type = LightType.Point;
         light.range = GetVisionRange();
-        light.transform.localPosition = new Vector3(-0.1f, 3.25f, -3.8f);
+        light.transform.localPosition = new Vector3(-0.1f, 4.2f, -2.8f);
     }
 
     
