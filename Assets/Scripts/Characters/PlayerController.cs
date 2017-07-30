@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour {
 
@@ -8,6 +9,16 @@ public class PlayerController : MonoBehaviour {
     public Light characterLight;
 
     private Character m_characterToDelete = null;
+
+    private void Awake()
+    {
+        characterLight.intensity = 0.0f;
+    }
+
+    private void Start()
+    {
+        characterLight.DOIntensity(22.0f, 1.0f).SetDelay(1.0f);
+    }
 
     public Light getCharacterLight()
     {
@@ -30,7 +41,7 @@ public class PlayerController : MonoBehaviour {
 	public void possesCharacter(Character character)
 	{
 		controlledCharacter = character;
-		character.SetIsPossessed (true);
+		character.SetIsPossessed (character.GetCharacterType() != Character.CharacterType.Soul);
 
 		CameraController.Instance.SetPlayerTarget(character.transform);
 

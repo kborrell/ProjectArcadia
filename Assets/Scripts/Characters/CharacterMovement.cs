@@ -37,6 +37,8 @@ public class CharacterMovement : MonoBehaviour {
         }
     }
 
+    public float GetSpeed() { return m_speed; }
+
     [SerializeField] private float m_speed = 1.0f;
     [SerializeField] private bool m_invertedMovement = false;
     private bool m_movementEnabled = true;

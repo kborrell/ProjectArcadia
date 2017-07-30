@@ -23,7 +23,7 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 
 		Debug.Log ("Characters Manager");
 		Character ch0 = Instantiate(characterPrefabs[1]).GetComponent<Character>() as Character;
-        ch0.transform.position = new Vector3(0.0f, 0.0f, -5.59f);
+        ch0.transform.position = new Vector3(0.0f, 0.09f, -6.59f);
 		mapCharacters.Add (ch0);
 
 		Character ch = Instantiate(characterPrefabs[0]).GetComponent<Character>() as Character;
