@@ -42,6 +42,7 @@ public class CharacterSonar : MonoBehaviour {
             {
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
+                    AudioManager.Instance.StopSFX("Sonar_Charge");
                     StopChargingSonar();
                 }
                 else
@@ -59,6 +60,8 @@ public class CharacterSonar : MonoBehaviour {
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    if(!m_chargingSonar)
+						AudioManager.Instance.PlaySFX("Sonar_Charge");
                     StarChargeSonar();
                 }
             }
@@ -87,6 +90,9 @@ public class CharacterSonar : MonoBehaviour {
             m_character.SetCharacterMovementEnabled(true);
 
         StopChargingSonar();
+
+        AudioManager.Instance.StopSFX("Sonar_Charge");
+        AudioManager.Instance.PlaySFX("Sonar");
         //(UIManager.Instance.GetPanel(UIManager.UIPanelType.Gameplay) as UIGameplayPanel).DisableTargetDetection();
     }
 
@@ -114,6 +120,8 @@ public class CharacterSonar : MonoBehaviour {
         m_chargedTimer = 0f;
         if (!m_sonarType)
             m_character.SetCharacterMovementEnabled(true);
+
+        AudioManager.Instance.StopSFX("Sonar");
 
         m_arrow.color = new Color(m_arrow.color.r, m_arrow.color.g, m_arrow.color.b, 1f);
 

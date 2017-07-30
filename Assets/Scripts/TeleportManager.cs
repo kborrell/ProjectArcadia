@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
@@ -25,14 +25,7 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
 	{
 		if (getCurrentCharacter() != character && !character.HasBeenPossessed())
 		{
-            Vector2 v1 = new Vector2(getCurrentCharacter().transform.right.x, getCurrentCharacter().transform.right.z);
-            Vector2 v2 = new Vector2(character.transform.position.x, character.transform.position.z) - new Vector2(getCurrentCharacter().transform.position.x, getCurrentCharacter().transform.position.z);
-            float angle = Vector2.Angle(v1, v2);
-            if (character.transform.position.z > getCurrentCharacter().transform.position.z)
-                angle *= -1;
-
 			m_particles = GameObject.Instantiate(m_soulParticle, getCurrentCharacter().transform.position, Quaternion.Euler(new Vector3(0.0f, 180.0f, 0.0f)));
-            m_particles.GetComponent<ParticleSystem>().startRotation = angle * Mathf.Deg2Rad;
 
 			m_objetiveCharacter = character;
             m_previousCharacter = getCurrentCharacter();
@@ -44,6 +37,8 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
             CharactersManager.Instance.getPlayerController().unpossesCurrentCharacter();
             DisplaySoulChange();
 
+            AudioManager.Instance.PlaySFX("Teleport");
+
 			Debug.Log("Teleported to " + character.name);
 		}
 	}
@@ -53,7 +48,7 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
         return m_previousCharacter;
     }
 
-	void Update () 
+	void Update ()
     {
         if (m_changingSoul)
             DisplaySoulChange();
@@ -84,9 +79,12 @@ public class TeleportManager : SingletonMonoBehaviour<TeleportManager>
     void DisplaySoulChange()
     {
         m_particles.transform.position = Vector3.MoveTowards(m_particles.transform.position, m_objetiveCharacter.transform.position, Time.deltaTime * m_soulSpeed);
+        m_particles.transform.LookAt(m_objetiveCharacter.transform.position);
 
         if (Vector3.Distance(m_particles.transform.position, m_objetiveCharacter.transform.position) <= 0.5f)
         {
+            AudioManager.Instance.StopSFX("Teleport");
+
             m_changingSoul = false;
             m_previousCharacter.SetCharacterMovementEnabled(true);
             CharactersManager.Instance.getPlayerController ().possesCharacter(m_objetiveCharacter);

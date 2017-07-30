@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 
 	public Character controlledCharacter { get; private set; }
     public Light characterLight;
+    public GameObject m_deadParticles;
 
     private Character m_characterToDelete = null;
 
@@ -74,15 +75,27 @@ public class PlayerController : MonoBehaviour {
     // Display animations and call CharactersManager::RemoveCharacter after certain delay
     private IEnumerator RemoveCharacter(Character character)
     {
+		character.Dead = true;
+
 		CharacterIAMovement movement = character.GetComponent<CharacterIAMovement> ();
 		if (movement) 
 		{
 			movement.SetEnabled (false);
 		}
         // display animations
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
+
+		CharactersManager.Instance.RemoveCharacter(character);
+		GameObject particles = Instantiate(m_deadParticles, character.transform.position, character.transform.rotation);
+		StartCoroutine("DestroyParticles", particles);
         // remove old character
-        CharactersManager.Instance.RemoveCharacter(character);
+        
+    }
+
+    private IEnumerator DestroyParticles(GameObject particles)
+    {
+        yield return new WaitForSeconds(1.5f);
+        Destroy(particles.gameObject);
     }
 
 }

@@ -52,3 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterLight: {fileID: 0}
+  m_deadParticles: {fileID: 1373472630591984, guid: 5b067baddb4903746b9d717d9fb2d5bf,
+    type: 2}

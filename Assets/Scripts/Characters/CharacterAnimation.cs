@@ -13,16 +13,27 @@ public class CharacterAnimation : MonoBehaviour
         die
     }
 
+    enum SkeletonType
+    {
+        front,
+        back,
+        side,
+        idle,
+		die
+    }
+
+	Character m_character;
+
     State currentState = State.idle;
 
     [SerializeField]
-    SkeletonDataAsset[] skeletons;
+    SkeletonAnimation[] skeletonAnimation;
 
-    [SerializeField]
-    SkeletonAnimation skeletonAnimation;
-
-    [SerializeField]
-    CharacterMovement characterMovement;
+	void Awake()
+	{
+		// init navmeshagent
+		m_character = gameObject.GetComponent<Character>();
+	}
 
     private void Update()
     {
@@ -32,22 +43,55 @@ public class CharacterAnimation : MonoBehaviour
 
     void UpdateAnimation()
     {
-        var dir = characterMovement.GetFacingDirection();
-        if(dir == new Vector3(0,0,1) && currentState != State.up)
-        {
-            currentState = State.up;
-            skeletonAnimation.skeletonDataAsset = skeletons[0];
-            skeletonAnimation.Initialize(true);
-            skeletonAnimation.AnimationState.SetAnimation(0, "1_back_walk", true);
-        }
-        else if(dir == new Vector3(0, 0, -1) && currentState != State.down)
-        {
-            currentState = State.down;
-            skeletonAnimation.skeletonDataAsset = skeletons[1];
-            skeletonAnimation.Initialize(true);
-            skeletonAnimation.AnimationState.SetAnimation(0, "1_front_walk", true);
-        }
+		var dir = m_character.getMovementDirection ();
+		var isMoving = m_character.isMoving();
 
-        //characterMovement.GetSpeed();
+		if (m_character.Dead) 
+		{
+			if (currentState != State.die) 
+			{
+				currentState = State.die;
+				ActivateSkeleton (SkeletonType.die);
+			}
+		}
+        else if (isMoving)
+        {
+            if (dir == new Vector3(0, 0, 1) && currentState != State.up)
+            {
+                currentState = State.up;
+                ActivateSkeleton(SkeletonType.back);
+            }
+            else if (dir == new Vector3(0, 0, -1) && currentState != State.down)
+            {
+                currentState = State.down;
+                ActivateSkeleton(SkeletonType.front);
+            }
+            else if (dir == new Vector3(1, 0, 0) && currentState != State.right)
+            {
+                currentState = State.right;
+                ActivateSkeleton(SkeletonType.side);
+                skeletonAnimation[2].transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else if (dir == new Vector3(-1, 0, 0) && currentState != State.left)
+            {
+                currentState = State.left;
+                ActivateSkeleton(SkeletonType.side);
+                skeletonAnimation[2].transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+        else if(currentState != State.idle)
+        {
+            currentState = State.idle;
+            ActivateSkeleton(SkeletonType.idle);
+        }
+    }
+
+    void ActivateSkeleton(SkeletonType type)
+    {
+        skeletonAnimation[0].gameObject.SetActive(type == SkeletonType.front);
+        skeletonAnimation[1].gameObject.SetActive(type == SkeletonType.back);
+        skeletonAnimation[2].gameObject.SetActive(type == SkeletonType.side);
+        skeletonAnimation[3].gameObject.SetActive(type == SkeletonType.idle);
+		skeletonAnimation[4].gameObject.SetActive(type == SkeletonType.die);
     }
 }

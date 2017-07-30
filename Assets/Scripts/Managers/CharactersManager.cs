@@ -12,6 +12,9 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 
 	public List<GameObject> characterPrefabs = new List<GameObject>();
 
+	public List<GameObject> spawnPoints = new List<GameObject> ();
+	int m_lastSpawnUsed = 0;
+
 	public GameObject targetPrefab;
 	public GameObject soulPrefab;
 	public GameObject fistCharacterPrefab;
@@ -19,8 +22,7 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 	float deltaSpawn;
 	public float spawnFrequence = 5;
 	public float enemiesOnMap = 10;
-	public float removeDistance = 100;
-	public float spawnDistance = 20;
+
 	public void Initialize()
 	{
 		deltaSpawn = spawnFrequence;
@@ -56,22 +58,13 @@ public class CharactersManager : SingletonMonoBehaviour<CharactersManager>
 		{
 			if (deltaSpawn > spawnFrequence) 
 			{
-				for (int i = mapCharacters.Count - 1; i >= 0; i--) 
-				{
-					Character dest = mapCharacters [i];
-
-					if (Vector3.Distance (dest.transform.position, controlledCharacter.transform.position) > removeDistance) 
-					{
-						GameObject.Destroy (dest.gameObject);
-						mapCharacters.RemoveAt (i);
-					}
-				}
-
 				while (mapCharacters.Count < enemiesOnMap) 
 				{
 					int type = Random.Range (0, characterPrefabs.Count);
 					Character ch = Instantiate(characterPrefabs[type]).GetComponent<Character>() as Character;
-					ch.transform.position = controlledCharacter.transform.position + new Vector3 (Random.Range (-spawnDistance, spawnDistance), 0, Random.Range (-spawnDistance, spawnDistance));
+					ch.transform.position = spawnPoints [m_lastSpawnUsed].transform.position;
+					m_lastSpawnUsed++;
+					m_lastSpawnUsed %= spawnPoints.Count;
 					mapCharacters.Add (ch);
 				}
 			}
