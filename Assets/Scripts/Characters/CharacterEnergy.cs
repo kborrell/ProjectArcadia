@@ -29,9 +29,11 @@ public class CharacterEnergy : MonoBehaviour {
     private void DecreaseEnergy()
     {
         m_currentEnergy -= m_decreaseRate;
-		if (OnEnergyValueChanged != null) {
-			OnEnergyValueChanged (m_currentEnergy, m_initialEnergy);
-		}
+
+        if (m_currentEnergy <= 0)
+        {
+            KillCharacter();
+        }
     }
 
     void Awake()
@@ -50,6 +52,11 @@ public class CharacterEnergy : MonoBehaviour {
         {
             DecreaseEnergy();
             m_timeSinceLastUpdate = 0.0f;
+        }
+
+        if (OnEnergyValueChanged != null)
+        {
+            OnEnergyValueChanged(m_currentEnergy, m_initialEnergy);
         }
 
         m_timeSinceLastUpdate += Time.deltaTime;
