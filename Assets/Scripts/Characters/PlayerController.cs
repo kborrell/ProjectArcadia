@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour {
         {
             GameManager.Instance.EndGame(true);
         }
+			
         // remove old character
         Character previousCharacter = TeleportManager.Instance.GetPreviousCharacter();
 		if(previousCharacter != null && m_characterToDelete ==null)
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour {
 
         if (m_characterToDelete != null)
         {
+			GameManager.Instance.GameStarted = true;
             DestroyImmediate(m_characterToDelete.gameObject);
             m_characterToDelete = null;
         }
