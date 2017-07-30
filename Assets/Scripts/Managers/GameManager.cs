@@ -31,5 +31,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         CharactersManager.Instance.getPlayerController().TurnOnLights();
 
 		GameStarted = true;
+
+        CharacterEnergy.OnCharacterDead += EndGame;
+    }
+
+    public void EndGame()
+    {
+        GameStarted = false;
+        CharacterEnergy.OnCharacterDead -= EndGame;
+        CharactersManager.Instance.getPlayerController().TurnOffLights();
+        UIManager.Instance.ChangeScreen(UIManager.UIPanelType.EndMenu);
     }
 }

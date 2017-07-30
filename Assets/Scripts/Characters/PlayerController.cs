@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour {
         characterLight.DOIntensity(22.0f, 1.0f).SetDelay(1.0f);
     }
 
+    public void TurnOffLights()
+    {
+        characterLight.DOIntensity(0.0f, 1.0f);
+    }
+
     public Light getCharacterLight()
     {
         return characterLight;
