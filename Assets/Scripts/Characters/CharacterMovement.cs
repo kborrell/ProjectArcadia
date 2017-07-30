@@ -33,6 +33,11 @@ public class CharacterMovement : MonoBehaviour
                 m_facingDirection = new Vector3(moveHorizontal, 0, moveVertical) * ((m_invertedMovement) ? -1 : 1);
                 m_facingDirection.Normalize();
                 transform.position += m_facingDirection * m_speed * Time.deltaTime;
+                m_isMoving = true;
+            }
+            else
+            {
+                m_isMoving = false;
             }
         }
     }
@@ -42,6 +47,7 @@ public class CharacterMovement : MonoBehaviour
         _rigidBody.velocity = Vector3.zero;
         _rigidBody.angularVelocity = Vector3.zero;
     }
+    public bool IsMoving() { return m_isMoving; }
 
     public float GetSpeed() { return m_speed; }
     public Vector3 GetFacingDirection()
@@ -54,6 +60,7 @@ public class CharacterMovement : MonoBehaviour
     private bool m_invertedMovement = false;
     private Vector3 m_facingDirection;
     private bool m_movementEnabled = true;
+    private bool m_isMoving = false;
 
     public void OnDrawGizmos()
     {
