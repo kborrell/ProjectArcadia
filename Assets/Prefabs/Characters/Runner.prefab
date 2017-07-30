@@ -273,7 +273,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1123187691605462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.265998, y: 0.97, z: -21.253725}
+  m_LocalPosition: {x: 64.35002, y: -5.4516735, z: -84.26943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224894694821600282}
@@ -338,7 +338,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f5ca19c76b830194dbf6c5ce274e6b86, type: 2}
+  - {fileID: 2100000, guid: 6b5918a414dc640bb80764656c5e3274, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -370,7 +370,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8cc6305796cfbdc4abf5219d2505dbf8, type: 2}
+  - {fileID: 2100000, guid: 55e039f868dc540a79fb6be96e9897d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -402,7 +402,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 32b54f64e0e1b244a9fd0c41b65bd52e, type: 2}
+  - {fileID: 2100000, guid: fc9df687b9bf74b7398bc82e6ba2a06a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -434,7 +434,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f5ca19c76b830194dbf6c5ce274e6b86, type: 2}
+  - {fileID: 2100000, guid: 6b5918a414dc640bb80764656c5e3274, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -466,7 +466,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 32b54f64e0e1b244a9fd0c41b65bd52e, type: 2}
+  - {fileID: 2100000, guid: fc9df687b9bf74b7398bc82e6ba2a06a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 975a53252b83d59479032261d72d5ba1, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 93cc3b1790ddb4e8fabc81f0fae3a24f, type: 2}
   initialSkinName: default
   initialFlipX: 0
   initialFlipY: 0
@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 6c4974be51e730940a2784e1de175357, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 24be9a60475814dd596c04c8076dc57e, type: 2}
   initialSkinName: default
   initialFlipX: 0
   initialFlipY: 0
@@ -635,7 +635,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_positionRange: 10
   m_timeToRecalculate: 3
-  m_escapeRange: 0
+  m_escapeRangeMin: 10
+  m_escapeRangeMax: 20
   m_recalculateOrigin: 0
   m_avoidPlayer: 0
   m_avoidFrequence: 0
@@ -690,7 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 84df164a22cf20449a2ecc5cb3262db6, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: ce64dbc9088bd4c7e94b0a8a1f08e3c3, type: 2}
   initialSkinName: default
   initialFlipX: 0
   initialFlipY: 0
@@ -720,7 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 975a53252b83d59479032261d72d5ba1, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 93cc3b1790ddb4e8fabc81f0fae3a24f, type: 2}
   initialSkinName: default
   initialFlipX: 0
   initialFlipY: 0
@@ -771,7 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 6c4974be51e730940a2784e1de175357, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 24be9a60475814dd596c04c8076dc57e, type: 2}
   initialSkinName: default
   initialFlipX: 0
   initialFlipY: 0
@@ -829,6 +830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_characterType: 1
+  m_characterIAMovement: {fileID: 0}
 --- !u!114 &114690120353326606
 MonoBehaviour:
   m_ObjectHideFlags: 1
