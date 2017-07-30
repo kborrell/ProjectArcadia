@@ -72,7 +72,7 @@ public class CharacterSonar : MonoBehaviour {
         Debug.Log("Sonar charged");
         m_sonarActive = true;
         //Call the sonar UI.
-
+        (UIManager.Instance.GetPanel(UIManager.UIPanelType.Gameplay) as UIGameplayPanel).EnableTargetDetection();
     }
 
     void StopSonar()
@@ -82,7 +82,7 @@ public class CharacterSonar : MonoBehaviour {
 		if (!m_sonarType)
             m_character.SetCharacterMovementEnabled(true);
         //Stop the sonar UI.
-
+        (UIManager.Instance.GetPanel(UIManager.UIPanelType.Gameplay) as UIGameplayPanel).DisableTargetDetection();
     }
 
     void StopOnDead()
