@@ -33,6 +33,11 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         }
     }
 
+    public bool IsDebugEnabled()
+    {
+        return m_debug;
+    }
+
     public void ChangeScreen(UIPanelType panelType)
     {
         UIPanel panel = m_panels[panelType];
@@ -63,5 +68,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     private UIPanel m_currentPanel;
 
     [SerializeField] private List<UIPanelInfo> m_panelList;
-    [SerializeField] private Dictionary<UIPanelType, UIPanel> m_panels = new Dictionary<UIPanelType, UIPanel>();    
+    [SerializeField] private Dictionary<UIPanelType, UIPanel> m_panels = new Dictionary<UIPanelType, UIPanel>();
+
+    [SerializeField] bool m_debug;
 }

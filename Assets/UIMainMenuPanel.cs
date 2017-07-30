@@ -8,7 +8,18 @@ public class UIMainMenuPanel : UIPanel {
 
     public override void HidePanel(OnHideAnimationFinishedCallback callback)
     {
-        StartCoroutine(HideCoroutine(callback));
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(HideCoroutine(callback));
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            if (callback != null)
+            {
+                callback();
+            }
+        }
     }
 
     IEnumerator HideCoroutine(OnHideAnimationFinishedCallback callback)
