@@ -28,7 +28,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         for (int i=0; i < m_panelList.Count; i++)
         {
-            m_panelList[i].panel.HidePanel(null);
+            m_panelList[i].panel.gameObject.SetActive(false);
             m_panels[m_panelList[i].type] = m_panelList[i].panel;
         }
     }
