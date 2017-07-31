@@ -51,5 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdd2279879df4eef8657d2dafa6f4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_soulParticle: {fileID: 0}
+  m_soulParticle: {fileID: 1576892409153896, guid: 2a2b78c8f886b7a4bbd92aaba39056ba,
+    type: 2}
   m_soulSpeed: 5
